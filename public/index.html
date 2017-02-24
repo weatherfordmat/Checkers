@@ -28,14 +28,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.js"></script>
     <script src="assets/js/utils.js"> </script>
+    <script src="assets/js/sideEffects.js"> </script>
+    <script src="assets/js/gameActions.js"> </script>
     <script src="assets/js/checkers.js"></script>
 
 </head>
 
 <body>
 <div class="container">
-    <button class="btn btn-primary start" onclick="startGame({x: 0, y: 0}, 70, boardCanvas);">Start New Game</button>
-    <button id="btnReplay" style="display:none;" onclick="replayAll({x: 0, y: 0}, 70, boardCanvas)">View Replay</button>
+    <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, 70, boardCanvas);">Start New Game</button>
+    <button id="btnReplay" style="display:none;" onclick="action.replay({x: 0, y: 0}, 70, boardCanvas)">View Replay</button>
     
     <svg id="checkersBoard"></svg>
     <!--End container-->
@@ -45,7 +47,7 @@
     <!-- Custom JavaScript -->
     <script type="text/javascript">
     var boardCanvas = d3.select("#checkersBoard");
-    startGame({
+    action.startGame({
         x: 0,
         y: 0
     }, 70, boardCanvas);

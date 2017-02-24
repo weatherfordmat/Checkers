@@ -27,20 +27,25 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.js"></script>
-    <script src="assets/js/utils.js"> </script>
-    <script src="assets/js/sideEffects.js"> </script>
-    <script src="assets/js/gameActions.js"> </script>
+    <script src="assets/js/utils.js">
+    </script>
+    <script src="assets/js/sideEffects.js">
+    </script>
+    <script src="assets/js/gameActions.js">
+    </script>
+    <script src="assets/js/AI.js">
+    </script>
     <script src="assets/js/checkers.js"></script>
-
 </head>
 
 <body>
-<div class="container">
-    <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, 70, boardCanvas);">Start New Game</button>
-    <button id="btnReplay" style="display:none;" onclick="action.replay({x: 0, y: 0}, 70, boardCanvas)">View Replay</button>
-    
-    <svg id="checkersBoard"></svg>
-    <!--End container-->
+    <div class="container">
+        <div class="row">
+            <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, 70, boardCanvas);">Start New Game</button>
+            <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, 70, boardCanvas)">View Replay</button>
+            <svg id="checkersBoard"></svg>
+        </div>
+        <!--End container-->
     </div>
     <!-- Bootstrap Core JavaScript -->
     <script src="assets/js/bootstrap.min.js"></script>

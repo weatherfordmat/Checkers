@@ -2,13 +2,12 @@
 var action = {
     //start game;
     startGame: function(origin, cellWidth, boardCanvas) {
-        movePiece.moves = [];
-        d3.select("#btnReplay").style("display", "none");
+        AI.movePiece.moves = [];
         cell_width = cellWidth;
         board_origin = origin;
         currentBoard = UI.drawBoard(origin, cellWidth, boardCanvas);
         currentBoard.ui = true;
-        showBoardState();
+        UI.showBoardState();
     },
     initBoard: function() {
         let initialBoard = [
@@ -21,7 +20,6 @@ var action = {
             [black, empty, black, empty, black, empty, black, empty],
             [empty, black, empty, black, empty, black, empty, black]
         ];
-
         let cells = new Array();
         let pieces = new Array();
         for(var i = 0; i < initialBoard.length; i++) {
@@ -49,8 +47,8 @@ var action = {
     },
     //play again;
     replay: function(origin, cellWidth, boardCanvas) {
-        var allMoves = movePiece.moves;
-        actions.startGame(origin, cellWidth, boardCanvas);
+        var allMoves = AI.movePiece.moves;
+        action.startGame(origin, cellWidth, boardCanvas);
         currentBoard.turn = 0; // can't really play
         for(var i = 0; i < allMoves.length; i++) {
             var moveNum = i + 1;

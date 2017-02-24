@@ -3,17 +3,23 @@ body {
 	height: auto;
 	overflow: auto;
 }
-
-#checkersBoard {
-	width: 650px;
-	height: 650px;
-
-}
 svg {
 	margin: 0 auto;
 	float: none;
 }
-.start {
+input {
+	border: 1px solid black;
+}
+.container {
+	margin: 0 auto;
+	margin-top: 5%;
+}
+#checkersBoard {
+	width: 650px;
+	height: 650px;
+	margin: 0 auto;
+}
+.start, .btnReplay {
 	border: 5px double #004080;
 	color: #004080;
 	background-color: white;

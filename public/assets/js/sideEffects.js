@@ -45,7 +45,7 @@ let UI = {
         var cell = utils.mapCoordinatesToCell(origin, width, currentBoard.cells, d.x, d.y);
         var from = d;
         var to = cell;
-        var legal = isMoveLegal(currentBoard.cells, currentBoard.pieces, d, from, to);
+        var legal = AI.isMoveLegal(currentBoard.cells, currentBoard.pieces, d, from, to);
         var index = utils.getCellIndex(d.row, d.col);
         var originalCell = currentBoard.cells[index];
         if(!legal) {
@@ -55,14 +55,14 @@ let UI = {
                 .attr("cy", d.y = cellCoordinates.y + width / 2);
         } else {
             // Update global board state
-            currentBoard = movePiece(currentBoard, d, originalCell, cell, 1);
+            currentBoard = AI.movePiece(currentBoard, d, originalCell, cell, 1);
 
             // Center circle in cell
             var cellCoordinates = utils.mapCellToCoordinates(origin, width, cell);
             node
                 .attr("cx", d.x = cellCoordinates.x + width / 2)
                 .attr("cy", d.y = cellCoordinates.y + width / 2);
-            showBoardState();
+            UI.showBoardState();
             currentBoard.turn = computer;
             // Computer's move
             var delayCallback = function() {
@@ -70,7 +70,7 @@ let UI = {
                 if(winner != 0) {
                     currentBoard.gameOver = true;
                 } else {
-                    computerMove();
+                    AI.computerMove(); //why is UI calling state?
                 }
                 return true;
             };
@@ -156,5 +156,14 @@ let UI = {
                 if(d.state === redKing || d.state === blackKing) return "";
                 else return "";
             });
+    },
+    showBoardState: function() {
+        d3.selectAll("text").each(function(d, i) {
+            d3.select(this)
+                .style("display", "none");
+        });
+        var cells = currentBoard.cells;
+        var pieces = currentBoard.pieces;
+        UI.drawText(pieces);
     }
 }

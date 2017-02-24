@@ -1,4 +1,6 @@
-//We put the pure & small functions here to clean up our main js file;
+/*
+We put the pure-ish & small functions here to clean up our main js file;
+*/
 const utils = {
     //gets the index for a cell by row and column;
     getCellIndex: function(row, col) {
@@ -114,7 +116,7 @@ const utils = {
         return { cells: cells, pieces: pieces, turn: board.turn };
     },
     //central to our max_value & min_value functions
-    getStats: function (target_board) {
+    getStats: function(target_board) {
         var sum = 0;
         var computer_pieces = 0;
         var computer_kings = 0;
@@ -166,19 +168,41 @@ const utils = {
         return board_utility;
     },
     getPieceCount: function(boardState) {
-    var numRed = 0;
-    var numBlack = 0;
-    var pieces = boardState.pieces;
-    for(var i = 0; i < pieces.length; i++) {
-        var piece = pieces[i];
-        if(piece.col >= 0 && piece.row >= 0) {
-            if(piece.state === red || piece.state === redKing) {
-                numRed += 1;
-            } else if(piece.state === black || piece.state === blackKing) {
-                numBlack += 1;
+        var numRed = 0;
+        var numBlack = 0;
+        var pieces = boardState.pieces;
+        for(var i = 0; i < pieces.length; i++) {
+            var piece = pieces[i];
+            if(piece.col >= 0 && piece.row >= 0) {
+                if(piece.state === red || piece.state === redKing) {
+                    numRed += 1;
+                } else if(piece.state === black || piece.state === blackKing) {
+                    numBlack += 1;
+                }
             }
         }
+        return { red: numRed, black: numBlack };
+    },
+    getJumpedPiece: function(cells, pieces, from, to) {
+        var distance = { x: to.col - from.col, y: to.row - from.row };
+        if(utils.abs(distance.x) == 2) {
+            var jumpRow = from.row + utils.sign(distance.y);
+            var jumpCol = from.col + utils.sign(distance.x);
+            var index = utils.getPieceIndex(pieces, jumpRow, jumpCol);
+            var jumpedPiece = pieces[index];
+            return jumpedPiece;
+        } else return null;
+
+    },
+    get_player_pieces: function (player, target_board) {
+    player_pieces = new Array();
+    for(var i = 0; i < target_board.pieces.length; i++) {
+        var piece = target_board.pieces[i];
+        if(piece.state === player || piece.state === (player + .1) || piece.state === (player - .1)) {
+            player_pieces.push(piece);
+        }
     }
-    return { red: numRed, black: numBlack };
+    return player_pieces;
 }
+
 }

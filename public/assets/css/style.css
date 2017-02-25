@@ -1,0 +1,31 @@
+body {
+	width: 100%;
+	height: auto;
+	overflow: auto;
+}
+svg {
+	margin: 0 auto;
+	float: none;
+}
+input {
+	border: 1px solid black;
+}
+.container {
+	margin: 0 auto;
+	margin-top: 5%;
+}
+#checkersBoard {
+	width: 650px;
+	height: 650px;
+	margin: 0 auto;
+}
+.start, .btnReplay {
+	border: 5px double #004080;
+	color: #004080;
+	background-color: white;
+}
+.start:hover {
+	background-color: white;
+	opacity: 0.8;
+	color:  #004080;
+}

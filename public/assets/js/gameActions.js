@@ -53,7 +53,7 @@ var action = {
                 cells.push(cell);
             }
         }
-        return { cells: cells, pieces: pieces, turn: red };
+        return { cells: cells, pieces: pieces, turn: red};
     },
     //check to see if the game is over;
     overYet: function(boardState) {

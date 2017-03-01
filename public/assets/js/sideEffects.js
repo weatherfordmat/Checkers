@@ -96,9 +96,20 @@ let UI = {
             })
             .attr("height", cellWidth)
             .attr("width", cellWidth)
-            .style("fill", "#666666")
+            // .style("fill", "#666666")
+            .attr("fill",function(d,i) {
+                if (d.row%2==0 && d.col%2==0){
+                        return "#7d7d7d"
+                    }
+                else if(d.row%2!==0 && d.col%2!==0){
+                        return "#7d7d7d"
+                    }
+              else{
+                return "black"}
+            })
+
             .style("stroke", "white")
-            .style("stroke-width", "3px");
+            .style("stroke-width", "1px");
 
         //Draw pieces
         var dragEndedDimensions = function(d) {
@@ -127,12 +138,14 @@ let UI = {
             })
             .style("fill", function(d) {
                 if(d.state === redKing || d.state === blackKing) return "orange";
-                else if(d.state === red) return "gold";
+                else if(d.state === red) return "green";
                 else return "#0080FF";
             })
+
+            .style("stroke", "#efefef")
+            .style("stroke-width", "2px")
+  
             .call(drag);
-
-
         return boardState;
     },
     drawText: function(data) {
@@ -152,9 +165,10 @@ let UI = {
                 if(d.state === red) return "black";
                 else return "white";
             })
-            .text(function(d) {
-                if(d.state === redKing || d.state === blackKing) return "";
+            .style("stroke-width", function(d) {
+                if(d.state === redKing || d.state === blackKing) return "5px"
                 else return "";
+                // .attr('d', d3.symbol().type(d3.symbolCross).size(5000))
             });
     },
     showBoardState: function() {
@@ -165,5 +179,22 @@ let UI = {
         var cells = currentBoard.cells;
         var pieces = currentBoard.pieces;
         UI.drawText(pieces);
+
+      d3.selectAll("circle").style("stroke-width", function(d) {
+            if(d.state === redKing) return "8px";
+            else if (d.state === blackKing) return "8px";
+            else if(d.state === red) return "2px";
+            else return "2px";
+        });
+
+
+
+
+
+
     }
 }
+
+
+
+// d3.selectAll("circle").attr('d', d3.symbol().type(d3.symbolCross).size(5000))

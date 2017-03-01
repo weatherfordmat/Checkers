@@ -78,7 +78,7 @@ const AI = {
         if(computer_moves.length > 0) {
             for(var i = 0; i < computer_moves.length; i++) {
                 simulated_board = utils.boardSnapShot(calc_board);
-
+                console.log(simulated_board);
                 //move computer piece
                 var computer_move = computer_moves[i];
                 var pieceIndex = utils.getPieceIndex(simulated_board.pieces, computer_move.from.row, computer_move.from.col);
@@ -174,18 +174,30 @@ const AI = {
         // Run algorithm to select next move
         var selected_move = AI.alphaBetaSearch(simulated_board, levelOfDifficulty);
         // Make computer's move
+
+
+         if (selected_move){       
         var pieceIndex = utils.getPieceIndex(currentBoard.pieces, selected_move.from.row, selected_move.from.col);
         var piece = currentBoard.pieces[pieceIndex];
+
+
         currentBoard = AI.movePiece(currentBoard, piece, selected_move.from, selected_move.to, 1);
         UI.moveCircle(selected_move.to, 1);
         UI.showBoardState();
         var winner = action.overYet(currentBoard);
         if(winner != 0) {
             currentBoard.gameOver = true;
+            // console.log("You win!");
         } else {
             // Set turn back to human
             currentBoard.turn = player;
             currentBoard.delay = 0;
+        }} 
+
+        else {
+            //computer has no valid moves
+            currentBoard.gameOver = true; 
+            console.log("You win!");
         }
     },
     getPieceMoves: function(target_board, target_piece, player) {

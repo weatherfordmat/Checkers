@@ -10,16 +10,35 @@ var action = {
         UI.showBoardState();
     },
     initBoard: function() {
+        //real board
         let initialBoard = [
-            [red, empty, red, empty, red, empty, red, empty],
+            
             [empty, red, empty, red, empty, red, empty, red],
             [red, empty, red, empty, red, empty, red, empty],
+            [empty, red, empty, red, empty, red, empty, red],
             [empty, empty, empty, empty, empty, empty, empty, empty],
             [empty, empty, empty, empty, empty, empty, empty, empty],
-            [empty, black, empty, black, empty, black, empty, black],
             [black, empty, black, empty, black, empty, black, empty],
-            [empty, black, empty, black, empty, black, empty, black]
+            [empty, black, empty, black, empty, black, empty, black],
+            [black, empty, black, empty, black, empty, black, empty]
         ];
+
+        //rigged board
+        // let initialBoard = [
+            
+        //     [empty, red, empty, red, empty, red, empty, red],
+
+        //     [black, empty, black, empty, black, empty, black, empty],
+        //     [empty, black, empty, black, empty, black, empty, black],
+        //     [black, empty, black, empty, black, empty, black, empty],
+
+        //     [empty, empty, empty, empty, empty, empty, empty, empty],
+        //     [red, empty, red, empty, red, empty, red, empty],
+        //     [empty, red, empty, red, empty, red, empty, red],
+
+        //     [empty, empty, empty, empty, empty, empty, empty, empty]
+        // ];
+
         let cells = new Array();
         let pieces = new Array();
         for(var i = 0; i < initialBoard.length; i++) {
@@ -40,8 +59,10 @@ var action = {
     overYet: function(boardState) {
         var pieceCount = utils.getPieceCount(boardState);
         if(pieceCount.red > 0 && pieceCount.black === 0) {
+            console.log("You win!");
             return red;
         } else if(pieceCount.black > 0 && pieceCount.red === 0) {
+            console.log("Computer Wins!");
             return black;
         } else return 0; //draw;
     },

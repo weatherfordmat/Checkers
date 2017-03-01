@@ -30,11 +30,10 @@ let UI = {
         });
     },
     hideCircle: function(cell, moveNum) {
-        currentBoard.delay = (moveNum * 600) + 500;
+        currentBoard.delay = (moveNum * 400) + 500;
         d3.selectAll("circle").each(function(d, i) {
             if(d.state === 0 && d.lastRow === cell.row && d.lastCol === cell.col) {
-                console.log("Hide col=" + cell.col + ", row=" + cell.row);
-                d3.select(this).transition().delay(600 * moveNum)
+                d3.select(this).transition().delay(400 * moveNum)
                     .style("display", "none");
             }
         });
@@ -87,6 +86,7 @@ let UI = {
         boardCanvas.append("g")
             .selectAll("rect")
             .data(cells)
+
             .enter().append("rect")
             .attr("x", function(d) {
                 return utils.mapCellToCoordinates(origin, cellWidth, d).x
@@ -127,6 +127,7 @@ let UI = {
             .data(pieces)
             .enter().append("circle")
             .attr("r", cellWidth / 2.6)
+
             .attr("cx", function(d) {
                 var x = utils.mapCellToCoordinates(origin, cellWidth, d).x;
                 return x + cellWidth / 2;
@@ -191,11 +192,6 @@ let UI = {
             else if(d.state === red) return "2px";
             else return "2px";
         });
-
-
-
-
-
 
     }
 }

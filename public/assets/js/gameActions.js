@@ -19,12 +19,13 @@ var action = {
             [empty, black, empty, black, empty, black, empty, black],
             [black, empty, black, empty, black, empty, black, empty],
             [empty, black, empty, black, empty, black, empty, black]
+
         ];
         let cells = new Array();
         let pieces = new Array();
-        for(var i = 0; i < initialBoard.length; i++) {
+        for(var i = 0; i < 8; ++i) {
             var row = initialBoard[i];
-            for(var j = 0; j < row.length; j++) {
+            for(var j = 0; j < 8; ++j) {
                 let colValue = row[j];
                 if(colValue != empty) {
                     let piece = { row: i, col: j, state: colValue };

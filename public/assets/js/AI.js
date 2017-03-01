@@ -78,7 +78,7 @@ const AI = {
         if(computer_moves.length > 0) {
             for(var i = 0; i < computer_moves.length; i++) {
                 simulated_board = utils.boardSnapShot(calc_board);
-
+                console.log(simulated_board);
                 //move computer piece
                 var computer_move = computer_moves[i];
                 var pieceIndex = utils.getPieceIndex(simulated_board.pieces, computer_move.from.row, computer_move.from.col);

@@ -96,7 +96,7 @@ let UI = {
             })
             .attr("height", cellWidth)
             .attr("width", cellWidth)
-            .style("fill", "#666666")
+            .attr("fill",function(d) { return d.col%3==0 && d.row%2==0 ? "#B3B3B3":"#B3B3B3"}) //allows for patterns if we want;
             .style("stroke", "white")
             .style("stroke-width", "3px");
 
@@ -162,6 +162,12 @@ let UI = {
             d3.select(this)
                 .style("display", "none");
         });
+        d3.selectAll("circle").style("fill", function(d) {
+                if(d.state === redKing) return "#FF66FF";
+                else if (d.state === blackKing) return "#66CCFF";
+                else if(d.state === red) return "gold";
+                else return "#0080FF";
+            });
         var cells = currentBoard.cells;
         var pieces = currentBoard.pieces;
         UI.drawText(pieces);

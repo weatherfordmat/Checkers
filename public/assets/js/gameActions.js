@@ -10,21 +10,40 @@ var action = {
         UI.showBoardState();
     },
     initBoard: function() {
-        let initialBoard = [
-            [red, empty, red, empty, red, empty, red, empty],
+        //real board
+       let initialBoard = [
+            
             [empty, red, empty, red, empty, red, empty, red],
             [red, empty, red, empty, red, empty, red, empty],
+            [empty, red, empty, red, empty, red, empty, red],
             [empty, empty, empty, empty, empty, empty, empty, empty],
             [empty, empty, empty, empty, empty, empty, empty, empty],
-            [empty, black, empty, black, empty, black, empty, black],
             [black, empty, black, empty, black, empty, black, empty],
-            [empty, black, empty, black, empty, black, empty, black]
+            [empty, black, empty, black, empty, black, empty, black],
+            [black, empty, black, empty, black, empty, black, empty]
         ];
+
+        //rigged board
+        // let initialBoard = [
+            
+        //     [empty, red, empty, red, empty, red, empty, red],
+
+        //     [black, empty, black, empty, black, empty, black, empty],
+        //     [empty, black, empty, black, empty, black, empty, black],
+        //     [black, empty, black, empty, black, empty, black, empty],
+
+        //     [empty, empty, empty, empty, empty, empty, empty, empty],
+        //     [red, empty, red, empty, red, empty, red, empty],
+        //     [empty, red, empty, red, empty, red, empty, red],
+
+        //     [empty, empty, empty, empty, empty, empty, empty, empty]
+        // ];
+
         let cells = new Array();
         let pieces = new Array();
-        for(var i = 0; i < initialBoard.length; i++) {
+        for(var i = 0; i < 8; ++i) {
             var row = initialBoard[i];
-            for(var j = 0; j < row.length; j++) {
+            for(var j = 0; j < 8; ++j) {
                 let colValue = row[j];
                 if(colValue != empty) {
                     let piece = { row: i, col: j, state: colValue };
@@ -34,14 +53,16 @@ var action = {
                 cells.push(cell);
             }
         }
-        return { cells: cells, pieces: pieces, turn: red };
+        return { cells: cells, pieces: pieces, turn: red};
     },
     //check to see if the game is over;
     overYet: function(boardState) {
         var pieceCount = utils.getPieceCount(boardState);
         if(pieceCount.red > 0 && pieceCount.black === 0) {
+            console.log("You win!");
             return red;
         } else if(pieceCount.black > 0 && pieceCount.red === 0) {
+            console.log("Computer Wins!");
             return black;
         } else return 0; //draw;
     },

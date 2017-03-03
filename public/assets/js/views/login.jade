@@ -1,0 +1,16 @@
+extends layout
+
+block content  
+  div(id="root" style="width: 280px; margin: 40px auto; padding: 10px;")
+
+  script.
+    var lock = new Auth0Lock('#{'M5MS1HhyesypJiDt8ZveV4E4tOxWFKgn'}', '#{'vdiaz.auth0.com'}', { auth: {
+          redirectUrl: '#{'http://localhost:8080/callback'}'
+        , responseType: 'code'
+        , params: {
+          scope: 'openid name email picture'
+        }
+      }});
+    lock.show();
+
+  

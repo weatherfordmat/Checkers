@@ -17,4 +17,4 @@ or ~ 8 for better results, but takes a while;
 NOTE: Placing the level of difficulty over 10
 may crash your browser.
 */
-var levelOfDifficulty = 4;
+var levelOfDifficulty = 9;

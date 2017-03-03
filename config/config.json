@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "root",
+    "password": "pugsRule",
+    "database": "checkers",
+    "host": "checkers.cjuxpa8poenr.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "pugsRule",
+    "database": "checkers",
+    "host": "checkers.cjuxpa8poenr.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "pugsRule",
+    "database": "checkers",
+    "host": "checkers.cjuxpa8poenr.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  }
+}
+
+

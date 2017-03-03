@@ -18,3 +18,4 @@ NOTE: Placing the level of difficulty over 10
 may crash your browser.
 */
 var levelOfDifficulty = 9;
+

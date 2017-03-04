@@ -54,18 +54,35 @@ app.use('/home', express.static(path.join(__dirname, 'public')))
 
 var initial = { "picture": "https://avatars3.githubusercontent.com/u/13956201?v=3&s=460", "nickname": "Matt" }
 
+function post() {
+    axios.post('https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api', {
+            "name": req.user.nickname,
+            "picture": req.user.picture,
+            "auth0Key": id
+        })
+        .then(function(response) {
+            console.log(response);
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+
 
 app.get('/user', ensureLoggedIn, function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
     //insert into database;
-    axios.post('https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api', 
-    {"name": req.user.nickname, 
-    "picture": req.user.picture, 
-    "auth0Key": req.user.id.replace('auth0|', '')
-    })
+    var id = req.user.id.replace('auth0|', '');
+    var url = 'https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/' + 2;
+    console.log(url);
+    axios.get(url)
         .then(function(response) {
-            console.log(response);
+            if(response.data) {
+                post();
+            } else {
+                console.log("Data Already In DB");
+            }
         })
         .catch(function(error) {
             console.log(error);

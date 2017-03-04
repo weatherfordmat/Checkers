@@ -6,10 +6,10 @@ $(document).ready(function() {
 var crud = {
     read: function() {
         var id = localStorage.getItem('id');
-        if(id) {
+        if (id) {
             var urlId = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/" + id;
             $.get({ url: urlId }).then(function(err, results) {
-                if(err) throw err;
+                if (err) throw err;
                 /*
 var data = {
 "id": 7,
@@ -26,8 +26,8 @@ var data = {
 
                 $('.thumbnail').src(data.["picture"]);
 
-               var wins = data.wins / data.wins + data.losses;
-               var color = wins >= 80 ? "green": wins < 80 && >= 60 ? "orange": "red";
+                var wins = data.wins / data.wins + data.losses;
+                var color = wins >= 80 ? "green" : wins < 80 && wins > 60 ? "yellow" : "red";
 
                 $('.percent').html(wins + "%");
 

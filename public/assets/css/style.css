@@ -49,6 +49,9 @@ input {
 	right:0;
 	left:0;
 }
+.navbar-text{
+	margin-right: 100px;
+}
 .start, .btnReplay {
 	border: 5px double #004080;
 	color: #004080;

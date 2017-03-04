@@ -1,25 +1,26 @@
 $(document).ready(function() {
 	crud.read();
-
 });
 
 
 var crud = {
     read: function() {
         var id = localStorage.getItem('id');
-
+        id = JSON.parse(id).id;
         if (id) {
-            var urlId = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/" + id;
-            $.get({ url: urlId }).then(function(err, results) {
-                if (err) throw err;
+            var urlId = "http://localhost:8080/db/users/" + id;
 
-                var data = JSON.parse(results);
+            $.get({ url: urlId }).then(function(results, err) {
+                if (err) {
+                	console.log(err);
+                } 
 
-                $('.thumbnail').src(data.["picture"]);
-
+                var data = results.data;
+                $('.thumbnail').attr('src', data["picture"]);
+                console.log(data.wins);
                 var wins = data.wins / data.wins + data.losses;
                 var color = wins >= 80 ? "green" : wins < 80 && wins > 60 ? "yellow" : "red";
-
+                wins = wins ? wins : "100";
                 $('.percent').html(wins + "%");
 
             })

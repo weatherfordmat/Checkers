@@ -68,7 +68,6 @@ function post() {
         });
 }
 
-
 app.get('/user', ensureLoggedIn, function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
@@ -94,6 +93,21 @@ app.get('/login', function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
     res.render('login', { env: env });
+});
+
+//had to proxy our requests through another route to use them;
+app.get('/db/users/:user?', function(req, res) {
+    var id = req.params.user ? req.params.user : '';
+    var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/" +id;
+
+    axios.get(url).then(function(response) {
+          res.json({
+            data: response.data
+          })
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
 });
 
 app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),

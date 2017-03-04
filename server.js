@@ -65,9 +65,8 @@ function post() {
         })
         .catch(function(error) {
             console.log(error);
-        });
+    });
 }
-
 
 app.get('/user', ensureLoggedIn, function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));

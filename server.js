@@ -2,11 +2,12 @@ var express = require('express');
 var bodyParser = require('body-parser'); //json stuff;
 var app = express();
 var path = require('path');
+var axios = require('axios');
 var cookieParser = require('cookie-parser'); //auth0;
 var Auth0Strategy = require('passport-auth0');
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn(); //determining if logged in or not;
 var passport = require('passport'); //auth0 background
-var session = require('express-session'); 
+var session = require('express-session');
 var PORT = process.env.PORT || 8080;
 
 //initialize AUth0 object;
@@ -34,7 +35,6 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-
 app.use(session({
     secret: 'shhhhhhhhh',
     resave: true,
@@ -58,6 +58,18 @@ var initial = { "picture": "https://avatars3.githubusercontent.com/u/13956201?v=
 app.get('/user', ensureLoggedIn, function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
+    //insert into database;
+    axios.post('https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api', 
+    {"name": req.user.nickname, 
+    "picture": req.user.picture, 
+    "auth0Key": req.user.id.replace('auth0|', '')
+    })
+        .then(function(response) {
+            console.log(response);
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
     res.render('user', { user: req.user });
 });
 
@@ -67,11 +79,10 @@ app.get('/login', function(req, res, next) {
     res.render('login', { env: env });
 });
 
-app.get('/callback',
-  passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
-  function(req, res) {
-    res.redirect(req.session.returnTo || '/user');
-  });
+app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
+    function(req, res) {
+        res.redirect(req.session.returnTo || '/user');
+    });
 
 app.get('/*', function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));

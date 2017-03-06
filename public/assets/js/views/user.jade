@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	img(src="#{user.picture}")
+	h2 Welcome #{user.nickname}!
+	br
+	a(href='/logout') Logout
+
+	script.
+		var profile = {
+			"id": "#{user.id}".replace("auth0|", ''),
+			"picture": "#{user.picture}",
+			"nickname":"#{user.nickname}"
+		}
+		localStorage.setItem('id', JSON.stringify(profile));

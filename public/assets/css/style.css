@@ -1,0 +1,64 @@
+body {
+	width: 100%;
+	height: auto;
+	overflow: auto;
+}
+svg {
+	margin: 0 auto;
+	float: none;
+}
+input {
+	border: 1px solid black;
+}
+.container {
+	margin: 0 auto;
+	margin-top: 5%;
+}
+#checkersBoard {
+	width: 650px;
+	height: 650px;
+	margin: 0 auto;
+	margin-top: 50px;
+	/*position: absolute;*/
+}
+/*#comp{
+	position: relative;
+	left: 0;
+	top: 0;
+}
+#user{
+	position: relative;
+	right: 0;
+	top:0;
+}*/
+.thumbnail{
+	border-radius: 100%;
+	width: 50px;
+	height: 50px;
+	margin: 0px;
+	padding: 0px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	margin-right: 75px;
+
+}
+.navbar{
+	position: fixed;
+	top:0;
+	right:0;
+	left:0;
+}
+.navbar-text{
+	margin-right: 100px;
+}
+.start, .btnReplay {
+	border: 5px double #004080;
+	color: #004080;
+	background-color: white;
+}
+.start:hover {
+	background-color: white;
+	opacity: 0.8;
+	color:  #004080;
+}

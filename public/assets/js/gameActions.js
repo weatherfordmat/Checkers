@@ -66,6 +66,11 @@ var action = {
             return black;
         } else return 0; //draw;
     },
+    quit: function(boardState) {
+
+            console.log("Computer Wins!");
+            action.startGame({x: 0, y: 0}, 70, boardCanvas);
+    },
     //play again;
     replay: function(origin, cellWidth, boardCanvas) {
         var allMoves = AI.movePiece.moves;

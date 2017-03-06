@@ -40,11 +40,42 @@
 
 <body>
     <div class="container">
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#checkers">Checkers</a></li>
+          <li><a data-toggle="tab" href="#mastermind">MasterMind</a></li>
+<!--           <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+          <li><a data-toggle="tab" href="#menu3">Menu 3</a></li> -->
+        </ul>
+  <div class="tab-content">
+    <div id="checkers" class="tab-pane fade in active">
+
         <div class="row">
             <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, 70, boardCanvas);">Start New Game</button>
+            <button class="btn btn-primary btnReplay" onclick="action.quit({x: 0, y: 0}, 70, boardCanvas)">Resign Game</button>
             <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, 70, boardCanvas)">View Replay</button>
             <svg id="checkersBoard"></svg>
         </div>
+    </div>
+<!--     <div id="mastermind" class="tab-pane fade">
+        <div class="row">
+            <button class="btn btn-primary start" onclick="#">Start New Game</button>
+            <button class="btn btn-primary btnReplay" onclick="#">Resign Game</button>
+            <svg id="mastermindBoard"></svg>
+        </div>
+    </div> -->
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
         <!--End container-->
     </div>
     <!-- Bootstrap Core JavaScript -->

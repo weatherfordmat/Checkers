@@ -4,7 +4,14 @@ block content
   div(id="root" style="width: 280px; margin: 40px auto; padding: 10px;")
 
   script.
-    var lock = new Auth0Lock('#{'M5MS1HhyesypJiDt8ZveV4E4tOxWFKgn'}', '#{'vdiaz.auth0.com'}', { auth: {
+    var lock = new Auth0Lock('#{'M5MS1HhyesypJiDt8ZveV4E4tOxWFKgn'}', '#{'vdiaz.auth0.com'}', { closable: false, theme: {
+    logo: 'http://a5.mzstatic.com/us/r30/Purple6/v4/e6/60/a7/e660a71a-f4be-7a70-8618-990d54a2d8b0/icon128-2x.png',
+    primaryColor: '#666666'
+    },
+    languageDictionary: {
+    title: "Get Ready To Play"
+    },  
+    auth: {
           redirectUrl: '#{'http://localhost:8080/callback'}'
         , responseType: 'code'
         , params: {

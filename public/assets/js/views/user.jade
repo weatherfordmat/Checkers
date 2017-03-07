@@ -1,14 +1,14 @@
 extends layout
 
 block content
-	img(src="#{user.picture}")
+	img(src="#{user.picture}" style="width: 75px; border-radius: 100%")
 	h2 Welcome #{user.nickname}!
 	br
-	a(href='/logout') Logout
+	a(href='/logout' style="color: red; font-size: 2em") Logout
 
 	script.
 		var profile = {
-			"id": "#{user.id}".replace("auth0|", ''),
+			"id": "#{user.id}".replace("auth0|", '').replace("facebook|",''),
 			"picture": "#{user.picture}",
 			"nickname":"#{user.nickname}"
 		}

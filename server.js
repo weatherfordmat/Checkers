@@ -76,7 +76,7 @@ app.get('/user', ensureLoggedIn, function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
     //insert into database;
-    var id = req.user.id.replace('auth0|', '') ? req.user.id.replace('auth0|', '') : '';
+    var id = req.user.id.replace('auth0|', '').replace('facebook|', '') ? req.user.id.replace('auth0|', '').replace('facebook|', '') : '';
     var url = 'https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/' + id;
     console.log(url);
     axios.get(url)

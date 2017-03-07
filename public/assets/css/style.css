@@ -49,6 +49,9 @@ input {
 	right:0;
 	left:0;
 	height: 55px;
+	border-radius: 0;
+	background: #233142;
+	border: 0;
 }
 .navbar-right {
 	margin-right: 20px;
@@ -60,11 +63,13 @@ input {
 .navbar-text{
 	background-color: transparent;
 }
+.navbar-default .navbar-brand {
+    color: #e3e3e3;
+}
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
 	text-align: center;
 }
 .row {
-	position: relative;
 	display: block;
 	width: 1250px;
 	float: none;
@@ -82,3 +87,5 @@ input {
 	background-color: white;
 	color: #004080;
 }
+
+

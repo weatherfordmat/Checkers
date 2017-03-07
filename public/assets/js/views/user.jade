@@ -3,6 +3,7 @@ extends layout
 block content
 	img(src="#{user.picture}" style="width: 75px; border-radius: 100%")
 	h2 Welcome #{user.nickname}!
+	p Login Provider: #{user.provider}
 	br
 	a(href='/logout' style="color: red; font-size: 2em") Logout
 

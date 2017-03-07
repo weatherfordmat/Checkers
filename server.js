@@ -95,6 +95,7 @@ app.get('/login', function(req, res, next) {
     res.render('login', { env: env });
 });
 
+
 //had to proxy our requests through another route to use them;
 app.get('/db/users/:user?',ensureLoggedIn, function(req, res) {
     var id = req.params.user ? req.params.user : '';

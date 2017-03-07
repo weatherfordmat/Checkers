@@ -8,21 +8,22 @@ var Auth0Strategy = require('passport-auth0');
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn(); //determining if logged in or not;
 var passport = require('passport'); //auth0 background
 var session = require('express-session');
+var keys = require('./public/assets/js/constants');
 var PORT = process.env.PORT || 8080;
 
 //initialize AUth0 object;
 var strategy = new Auth0Strategy({
-    domain: 'vdiaz.auth0.com',
-    clientID: 'M5MS1HhyesypJiDt8ZveV4E4tOxWFKgn',
-    clientSecret: 'h1PdgKF_TnkNNsXwx9EF_deCWnXUa7qv9-rxYDlaAVc4IKsTZWrN0PbrwuPYQlFW',
+    domain: keys.domain,
+    clientID: keys.clientID,
+    clientSecret: keys.clientSecret,
     callbackURL: 'http://localhost:8080/user'
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     return done(null, profile);
 });
 
 var env = {
-    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
-    AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+    AUTH0_CLIENT_ID: keys.clientID,
+    AUTH0_DOMAIN: keys.domain,
     AUTH0_CALLBACK_URL: 'http://localhost:8080/user'
 };
 
@@ -78,7 +79,6 @@ app.get('/user', ensureLoggedIn, function(req, res, next) {
     //insert into database;
     var id = req.user.id.replace('auth0|', '').replace('facebook|', '') ? req.user.id.replace('auth0|', '').replace('facebook|', '') : '';
     var url = 'https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/' + id;
-    console.log(url);
     axios.get(url)
         .then(function(response) {
             if(!response.data) {

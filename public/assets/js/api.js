@@ -15,17 +15,12 @@ var crud = {
                     console.log(err);
                 }
                 var data = results.data;
-                $('.thumbnail').attr('src', data["picture"]);
-                console.log(data.wins);
-                var wins = data.wins / data.wins + data.losses;
-                wins = wins ? wins : "100";
-                var color = wins >= 80 ? "green" : wins < 80 && wins > 60 ? "yellow" : "red";
-                $('.percent').html(wins + "%");
-
-            })
+                $('.thumbnail').attr('src', data.picture);
+                $('.wins').html("Wins: " +data.wins);
+                $('.losses').html("Losses: " +data.losses);
+            });
         } else {
             console.log("No User Specified.");
-
         }
     },
     update: function() {

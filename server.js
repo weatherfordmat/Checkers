@@ -27,6 +27,7 @@ var env = {
 };
 
 passport.use(strategy);
+
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
@@ -50,35 +51,38 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-app.use('/home',ensureLoggedIn, express.static(path.join(__dirname, 'public')))
 
-var initial = { "picture": "https://avatars3.githubusercontent.com/u/13956201?v=3&s=460", "nickname": "Matt" }
+app.all('/', function(req, res) {
+    res.redirect('/home');
+});
 
-function post() {
+app.use('/home', ensureLoggedIn, express.static(path.join(__dirname, 'public')));
+
+function post(req) {
     axios.post('https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api', {
             "name": req.user.nickname,
-            "picture": req.user.picture,
-            "auth0Key": id
+            "picture": req.user.picture_large ? req.user.picture_large : req.user.picture,
+            "auth0Key": req.user.id.replace('auth0|', '').replace('facebook|', '')
         })
         .then(function(response) {
             console.log(response);
         })
         .catch(function(error) {
             console.log(error);
-        });
+    });
 }
 
 app.get('/user', ensureLoggedIn, function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
     //insert into database;
-    var id = req.user.id.replace('auth0|', '');
-    var url = 'https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/' + 2;
+    var id = req.user.id.replace('auth0|', '') ? req.user.id.replace('auth0|', '') : '';
+    var url = 'https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/' + id;
     console.log(url);
     axios.get(url)
         .then(function(response) {
-            if(response.data) {
-                post();
+            if(!response.data) {
+                post(req);
             } else {
                 console.log("Data Already In DB");
             }
@@ -121,12 +125,14 @@ app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/url-if-
         res.redirect(req.session.returnTo || '/user');
 });
 
-app.get('/*', function(req, res, next) {
+app.get('/*', function(req, res,next) {
+    var err = new Error('Not Found');
+    err.status = 404;
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
     res.render('error', {
         message: "Page Not Found",
-        error: {}
+        error: {err}
     });
 });
 

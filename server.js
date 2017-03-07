@@ -50,7 +50,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-app.use('/home', express.static(path.join(__dirname, 'public')))
+app.use('/home',ensureLoggedIn, express.static(path.join(__dirname, 'public')))
 
 var initial = { "picture": "https://avatars3.githubusercontent.com/u/13956201?v=3&s=460", "nickname": "Matt" }
 
@@ -96,7 +96,7 @@ app.get('/login', function(req, res, next) {
 });
 
 //had to proxy our requests through another route to use them;
-app.get('/db/users/:user?', function(req, res) {
+app.get('/db/users/:user?',ensureLoggedIn, function(req, res) {
     var id = req.params.user ? req.params.user : '';
     var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/" +id;
 
@@ -110,10 +110,15 @@ app.get('/db/users/:user?', function(req, res) {
         });
 });
 
+app.get('/logout', function(req, res) {
+    req.session.destroy();
+    res.redirect('/login');
+});
+
 app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
     function(req, res) {
         res.redirect(req.session.returnTo || '/user');
-    });
+});
 
 app.get('/*', function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));

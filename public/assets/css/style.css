@@ -17,6 +17,7 @@ input {
 #checkersBoard {
 	width: 650px;
 	height: 650px;
+	display: block;
 	margin: 0 auto;
 	margin-top: 50px;
 	/*position: absolute;*/
@@ -35,30 +36,38 @@ input {
 	border-radius: 100%;
 	width: 50px;
 	height: 50px;
-	margin: 0px;
+	margin: 3px;
 	padding: 0px;
 	position: fixed;
+	border: 0;
 	top: 0;
 	right: 0;
 	margin-right: 75px;
 
+}
+.glyphicon {
+	font-size: 4em;
+	color: black;
 }
 .navbar{
 	position: fixed;
 	top:0;
 	right:0;
 	left:0;
+	height: 55px;
 }
 .navbar-text{
 	margin-right: 100px;
 }
+.buttonRow {
+	display: block;
+	margin: 0 auto;
+}
 .start, .btnReplay {
-	border: 5px double #004080;
 	color: #004080;
+	border: 5px solid #004080;
 	background-color: white;
 }
-.start:hover {
-	background-color: white;
-	opacity: 0.8;
-	color:  #004080;
+.start:hover, .btnReplay:hover {
+	opacity: 0.9;
 }

@@ -95,6 +95,7 @@ app.get('/login', function(req, res, next) {
     res.render('login', { env: env });
 });
 
+
 //had to proxy our requests through another route to use them;
 app.get('/db/users/:user?', function(req, res) {
     var id = req.params.user ? req.params.user : '';
@@ -108,6 +109,11 @@ app.get('/db/users/:user?', function(req, res) {
         .catch(function(error) {
             console.log(error);
         });
+});
+
+app.get('/logout', function(req, res) {
+    req.session.destroy();
+    res.redirect('/login');
 });
 
 app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),

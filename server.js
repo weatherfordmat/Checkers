@@ -99,22 +99,6 @@ app.get('/login', function(req, res, next) {
     res.render('login', { env: env });
 });
 
-
-//had to proxy our requests through another route to use them;
-app.get('/db/users/:user?',ensureLoggedIn, function(req, res) {
-    var id = req.params.user ? req.params.user : '';
-    var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/" +id;
-
-    axios.get(url).then(function(response) {
-          res.json({
-            data: response.data
-          })
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-});
-
 app.get('/scores', function(req, res) {
     var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/";
     axios.get(url).then(function(response) {

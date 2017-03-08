@@ -1,0 +1,69 @@
+body {
+
+}
+h1 {
+	color: #000080;
+	text-align: center;
+	font-size: 4em;
+	font-family: monospace;
+}
+li span {
+	font-size: 0.7em;
+	font-style: italic;
+	color: #B3B3B3;
+}
+span {
+	margin-left: 200px;
+}
+li {
+	font-size: 1.7em;
+	list-style: none;
+	padding: 10px;
+}
+
+.container2 {
+	width: 38%;
+
+	margin: 0 auto;
+}
+#grid {
+	min-width: 1600px;
+}
+
+.box {
+	width: 20px;
+	height: 20px;
+	border: 2px solid white;
+	float: left;
+	background-color: #CCCCCC;
+	padding: 12px;
+	font-size: 1.1em;
+	line-height: 2px;
+	color: white;
+}
+.safe {
+	background-color: #0080FF;
+}
+.clicked {
+	background-color: #FF0000;
+}
+.level {
+	float: left;
+	font-size: 1.5em;
+	font-weight: 600;
+	font-style: italic;
+	color: #FF8000;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  background-color: #CCCCCC;
+  height: 40px;
+  width: 100%;
+} 
+.footer p {
+	text-align: center;
+	font-size: 1.5em;
+	color: #999999;
+}
+

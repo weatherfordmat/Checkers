@@ -163,6 +163,7 @@ const AI = {
         if(best_moves.length > 1) {
             max_move = utils.randomize(best_moves);
         }
+        console.log(best_moves)
         return max_move;
     },
     computerMove: function() {

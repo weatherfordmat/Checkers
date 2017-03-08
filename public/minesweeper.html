@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--favicon code -->
+    <!-- end favicon code -->
+    <title>Checkers Project</title>
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="http://a5.mzstatic.com/us/r30/Purple6/v4/e6/60/a7/e660a71a-f4be-7a70-8618-990d54a2d8b0/icon128-2x.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/minesweeper.css">
+    <!-- Custom CSS -->
+    <!--font embed -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.js"></script>
+    <script src="assets/js/utils.js">
+    </script>
+    <script src="assets/js/sideEffects.js">
+    </script>
+    <script src="assets/js/gameActions.js">
+    </script>
+    <script src="assets/js/AI.js">
+    </script>
+    <script src="assets/js/api.js">
+    </script>
+    <script src="assets/js/checkers.js"></script>
+    <script src="assets/js/vue.js"></script>
+    </head>
+    <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+               
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Arcadia Mania</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <!-- <li class="active"><a href="#">Checkers <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Tic Tac Te</a></li> -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GAMES <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Checkers</a></li>
+                            <li><a href="#">Tic Tac Toe</a></li>
+                            <li><a href="#">Minesweeper</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">High Scores</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <p class="navbar-text navbar-left wins">Loading. . .</p>
+                    <p class="navbar-text navbar-left losses">Loading. . .</p>
+                    <li>
+                        <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img src="http://placehold.it/140x100" alt="pic" class="thumbnail dropdown-toggle">
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="http://localhost:8080/logout" id="logout">Log Out</a></li>
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div
+        
+    </nav>
+        <div id="app">
+        
+            <h1>
+                {{ message }}
+                </br>
+
+               <small>{{sub}} </small>
+                  <hr>
+            </h1>
+            <span class="level"> Level: {{level}} </span>
+            <br/>
+
+            <br/>
+            <span class="level"> Squares: {{squares}} </span>
+            <br/>
+
+            <br/>
+            <span class="level"> Points: {{points}} </span>
+        </div>
+        <div id="fixed">
+        <div id="grid">
+            <grid>
+            </grid>
+        </div>
+        </div>
+        
+        <script>
+        var numOfChildren = 396;
+        var difficulty = 10; //lower the harder
+            var app = new Vue({
+			el: '#app',
+			data: {
+			message: 'Minesweeper',
+			sub: 'Guess which squares are mines and which are safe!',
+			level: difficulty-9,
+			squares: 400,
+			points: 0,
+				},				
+		});
+         function pattern(start, all) {
+
+         	var down = newApp.$children[0].$children[start-25];
+         	var up = newApp.$children[0].$children[start+19];
+         	var right = newApp.$children[0].$children[start-2];
+         	var left = newApp.$children[0].$children[start-4];
+   
+         	//go left, 0,1,2,3 spaces and down;
+         	function goLeft() {
+        		var num = Math.floor(Math.random()*4);
+         		for (var i = start-num; i < start; i++) {
+         			var ele = newApp.$children[0].$children[i];
+         			var eleDown = newApp.$children[0].$children[i-25];
+         			if (ele !== undefined) {
+						if (!ele.isSafe && !ele.isMine) {
+							ele.isSafe = true;
+							if (eleDown && !eleDown.isMine) {
+								eleDown.isSafe = true;
+								}
+							}
+						}
+         		  }
+         	}	
+         	goLeft();
+         	//go right and up in numbers
+         	function goRight() {
+        		var num = Math.floor(Math.random()*4);
+         		for (var i = start; i < start+num; i++) {
+         			var ele = newApp.$children[0].$children[i];
+         			var eleUp = newApp.$children[0].$children[i+19];
+         			if (ele !== undefined) {
+						if (!ele.isSafe && !ele.isMine) {
+							ele.isSafe = true;
+							if (eleUp && !eleUp.isMine) {
+								eleUp.isSafe = true;
+								}			
+							}
+						}
+         		  }
+         	}
+         	goRight();
+         	safeKids = [];
+         	function createSafeZone() {
+         		for (var i = 2; i < 396; i++) {
+         			if (newApp.$children[0].$children[i].isSafe) {
+         				safeKids.push(newApp.$children[0].$children[i]._uid)
+         			}
+         		}
+         		return safeKids;
+         	}
+
+         	createSafeZone(); // creates an array of safe kids;
+         	console.log(safeKids);
+         	   function check(dir) {
+         	   	  var amount = 0;
+		          up = newApp.$children[0].$children[dir + 19]; //works
+		          down = newApp.$children[0].$children[dir - 25]; //?
+		          right = newApp.$children[0].$children[dir - 2]; //works
+		          left = newApp.$children[0].$children[dir - 3]; //?
+
+		          downLeft = newApp.$children[0].$children[dir - 26];
+		          downRight = newApp.$children[0].$children[dir - 24];
+
+		          upLeft = newApp.$children[0].$children[dir + 20];
+		          upRight = newApp.$children[0].$children[dir + 21];
+
+		          //count the 8 squares around it;
+		          if (up !== undefined && up.isMine) {
+		              amount+=1;
+		          }
+		          if (down !== undefined && down.isMine) {
+		              amount+=1;
+		          }
+		          if (left !== undefined && left.isMine) {
+		              amount+=1;
+		          }
+		          if (right !== undefined && right.isMine) {
+		              amount+=1;
+		          }
+		          if (upRight !== undefined && upRight.isMine) {
+		              amount+=1;
+		          }
+		          if (upLeft !== undefined && upLeft.isMine) {
+		              amount+=1;
+		          }
+		          if (downRight !== undefined && downRight.isMine) {
+		              amount+=1;
+		          }
+		          if (downLeft !== undefined && downLeft.isMine) {
+		              amount+=1;
+		          }
+		       		amount = amount < 1 ? '' : amount;
+		       		newApp.$children[0].$children[dir-3].total = amount;
+		      }
+		      //run check on all records;
+		      safeKids.map((a) => check(a));
+		      app.points = safeKids.length;
+		      app.squares = 400 - app.points;
+         }
+		Vue.component('box', {
+			template: "<div v-on:click='start' class='box'  v-bind:class='{ safe: isSafe, mine: isMine, clicked: isClicked }'>{{total}}</div>",
+				data: function() {
+				return {
+					isSafe: false,
+					isMine: Math.floor(Math.random()*difficulty) === 2 ? true : false,
+					total: '',
+					isClicked: false,
+				}
+			},
+			methods: {
+				start: function() {
+					if (this.isMine) {
+						this.isClicked = true;
+						alert("Game Over!");
+						location.reload();
+					}
+					else {
+						this.isSafe = !this.isSafe;
+						var start = this._uid;
+						pattern(start);				
+					}
+
+				}
+
+			},
+		})
+		var grid=[];
+		for (var i = 0; i < numOfChildren; i++) {
+			grid.push('<box></box>')
+		}
+		grid = grid.toString().replace(/,/g,'');
+		Vue.component('grid', {
+			template: "<div class='container2'>"+ grid +"</div>",
+		})
+		var newApp = new Vue({
+			el: '#grid',			
+		});
+		
+
+        </script>
+        <script src="assets/js/bootstrap.min.js"></script>
+    </body>
+</html>

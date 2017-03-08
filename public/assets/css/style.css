@@ -89,6 +89,9 @@ input {
 	clear: both;
 	margin: 0 auto;
 }
+.btnReplay {
+	opacity: 0;
+}
 .start, .btnReplay {
 	float: none;
 	color: #fff;

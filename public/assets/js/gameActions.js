@@ -1,4 +1,5 @@
 //this file is for broad game actions, e.g. starting, stopping, etc.
+
 var action = {
     //start game;
     startGame: function(origin, cellWidth, boardCanvas) {
@@ -11,8 +12,7 @@ var action = {
     },
     initBoard: function() {
         //real board
-       let initialBoard = [
-            
+      let initialBoard = [          
             [empty, red, empty, red, empty, red, empty, red],
             [red, empty, red, empty, red, empty, red, empty],
             [empty, red, empty, red, empty, red, empty, red],
@@ -22,20 +22,15 @@ var action = {
             [empty, black, empty, black, empty, black, empty, black],
             [black, empty, black, empty, black, empty, black, empty]
         ];
-
         //rigged board
-        // let initialBoard = [
-            
+        // let initialBoard = [         
         //     [empty, red, empty, red, empty, red, empty, red],
-
         //     [black, empty, black, empty, black, empty, black, empty],
         //     [empty, black, empty, black, empty, black, empty, black],
         //     [black, empty, black, empty, black, empty, black, empty],
-
         //     [empty, empty, empty, empty, empty, empty, empty, empty],
         //     [red, empty, red, empty, red, empty, red, empty],
         //     [empty, red, empty, red, empty, red, empty, red],
-
         //     [empty, empty, empty, empty, empty, empty, empty, empty]
         // ];
 
@@ -60,14 +55,15 @@ var action = {
         var pieceCount = utils.getPieceCount(boardState);
         if(pieceCount.red > 0 && pieceCount.black === 0) {
             console.log("You win!");
+            $('.btnReplay').css('opacity', '1');
             return red;
         } else if(pieceCount.black > 0 && pieceCount.red === 0) {
             console.log("Computer Wins!");
+            $('.btnReplay').css('opacity', '1');
             return black;
         } else return 0; //draw;
     },
     quit: function(boardState) {
-
             console.log("Computer Wins!");
             action.startGame({x: 0, y: 0}, 70, boardCanvas);
     },
@@ -106,3 +102,4 @@ var action = {
         }
     },
 }
+

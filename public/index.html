@@ -14,6 +14,7 @@
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="http://a5.mzstatic.com/us/r30/Purple6/v4/e6/60/a7/e660a71a-f4be-7a70-8618-990d54a2d8b0/icon128-2x.png" type="image/x-icon">
     <!-- Custom CSS -->
     <!--font embed -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -47,6 +48,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+               
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -61,6 +63,7 @@
                     <li><a href="#">Tic Tac Te</a></li> -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GAMES <span class="caret"></span></a>
+
                         <ul class="dropdown-menu">
                             <li><a href="#">Checkers</a></li>
                             <li><a href="#">Tic Tac Toe</a></li>
@@ -70,41 +73,36 @@
                         </ul>
                     </li>
                 </ul>
-                <!-- <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form> -->
                 <ul class="nav navbar-nav navbar-right">
-                   <p class="navbar-text navbar-left percent">88%</p>
+                    <p class="navbar-text navbar-left wins">Loading. . .</p>
+                    <p class="navbar-text navbar-left losses">Loading. . .</p>
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <img src="http://vignette2.wikia.nocookie.net/bloodandhonor/images/9/90/Mogwai.jpg/revision/latest?cb=20111104234104" alt="pic" class="thumbnail" class="dropdown">
-                           
+                        <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img src="http://placehold.it/140x100" alt="pic" class="thumbnail dropdown-toggle">
                             <ul class="dropdown-menu">
                                 <li><a href="#">Profile</a></li>
                                 <li><a href="#">Something</a></li>
                                 <li><a href="# ">Something else </a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Log Out</a></li>
+                                <li><a href="http://localhost:8080/logout" id="logout">Log Out</a></li>
                             </ul>
                         </a>
                     </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
-        </div>
+        </div
         <!-- /.container-fluid -->
     </nav>
-    ...
+    
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, 70, boardCanvas);">Start New Game</button>
-            <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, 70, boardCanvas)">View Replay</button>
             <svg id="checkersBoard"></svg>
         </div>
+            <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas);">Start New Game</button>
+            <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas)">View Replay</button>
+
         <!--End container-->
     </div>
     <!-- Bootstrap Core JavaScript -->
@@ -115,7 +113,7 @@
     action.startGame({
         x: 0,
         y: 0
-    }, 70, boardCanvas);
+    }, $(window).height()/13, boardCanvas);
     </script>
 </body>
 

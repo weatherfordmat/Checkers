@@ -17,5 +17,19 @@ or ~ 8 for better results, but takes a while;
 NOTE: Placing the level of difficulty over 10
 may crash your browser.
 */
-var levelOfDifficulty = 3;
+var levelOfDifficulty = 7;
 
+
+//misc. DOM manipulation;
+$(document).ready(function() {
+    $('#logout').click(function() {
+        localStorage.removeItem("id");
+    });
+});
+
+
+/*
+Things To Do Today:
+3. Decide if putting Minesweeper and Tic Tac Toe In/
+7. Add Tests;
+*/

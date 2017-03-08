@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	crud.read();
+    crud.read();
 });
 
 
@@ -7,26 +7,20 @@ var crud = {
     read: function() {
         var id = localStorage.getItem('id');
         id = JSON.parse(id).id;
-        if (id) {
+        if(id) {
             var urlId = "http://localhost:8080/db/users/" + id;
 
             $.get({ url: urlId }).then(function(results, err) {
-                if (err) {
-                	console.log(err);
-                } 
-
+                if(err) {
+                    console.log(err);
+                }
                 var data = results.data;
-                $('.thumbnail').attr('src', data["picture"]);
-                console.log(data.wins);
-                var wins = data.wins / data.wins + data.losses;
-                var color = wins >= 80 ? "green" : wins < 80 && wins > 60 ? "yellow" : "red";
-                wins = wins ? wins : "100";
-                $('.percent').html(wins + "%");
-
-            })
+                $('.thumbnail').attr('src', data.picture);
+                $('.wins').html("Wins: " +data.wins);
+                $('.losses').html("Losses: " +data.losses);
+            });
         } else {
             console.log("No User Specified.");
-
         }
     },
     update: function() {

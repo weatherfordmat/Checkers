@@ -8,25 +8,27 @@ var Auth0Strategy = require('passport-auth0');
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn(); //determining if logged in or not;
 var passport = require('passport'); //auth0 background
 var session = require('express-session');
+var keys = require('./public/assets/js/constants');
 var PORT = process.env.PORT || 8080;
 
 //initialize AUth0 object;
 var strategy = new Auth0Strategy({
-    domain: 'vdiaz.auth0.com',
-    clientID: 'M5MS1HhyesypJiDt8ZveV4E4tOxWFKgn',
-    clientSecret: 'h1PdgKF_TnkNNsXwx9EF_deCWnXUa7qv9-rxYDlaAVc4IKsTZWrN0PbrwuPYQlFW',
+    domain: keys.domain,
+    clientID: keys.clientID,
+    clientSecret: keys.clientSecret,
     callbackURL: 'http://localhost:8080/user'
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     return done(null, profile);
 });
 
 var env = {
-    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
-    AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+    AUTH0_CLIENT_ID: keys.clientID,
+    AUTH0_DOMAIN: keys.domain,
     AUTH0_CALLBACK_URL: 'http://localhost:8080/user'
 };
 
 passport.use(strategy);
+
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
@@ -50,35 +52,37 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-app.use('/home', express.static(path.join(__dirname, 'public')))
 
-var initial = { "picture": "https://avatars3.githubusercontent.com/u/13956201?v=3&s=460", "nickname": "Matt" }
+app.all('/', function(req, res) {
+    res.redirect('/home');
+});
 
-function post() {
+app.use('/home', ensureLoggedIn, express.static(path.join(__dirname, 'public')));
+
+function post(req) {
     axios.post('https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api', {
             "name": req.user.nickname,
-            "picture": req.user.picture,
-            "auth0Key": id
+            "picture": req.user.picture_large ? req.user.picture_large : req.user.picture,
+            "auth0Key": req.user.id.replace('auth0|', '').replace('facebook|', '')
         })
         .then(function(response) {
             console.log(response);
         })
         .catch(function(error) {
             console.log(error);
-        });
+    });
 }
 
 app.get('/user', ensureLoggedIn, function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
     //insert into database;
-    var id = req.user.id.replace('auth0|', '');
-    var url = 'https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/' + 2;
-    console.log(url);
+    var id = req.user.id.replace('auth0|', '').replace('facebook|', '') ? req.user.id.replace('auth0|', '').replace('facebook|', '') : '';
+    var url = 'https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/' + id;
     axios.get(url)
         .then(function(response) {
-            if(response.data) {
-                post();
+            if(!response.data) {
+                post(req);
             } else {
                 console.log("Data Already In DB");
             }
@@ -95,8 +99,9 @@ app.get('/login', function(req, res, next) {
     res.render('login', { env: env });
 });
 
+
 //had to proxy our requests through another route to use them;
-app.get('/db/users/:user?', function(req, res) {
+app.get('/db/users/:user?',ensureLoggedIn, function(req, res) {
     var id = req.params.user ? req.params.user : '';
     var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/" +id;
 
@@ -110,17 +115,24 @@ app.get('/db/users/:user?', function(req, res) {
         });
 });
 
+app.get('/logout', function(req, res) {
+    req.session.destroy();
+    res.redirect('/login');
+});
+
 app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
     function(req, res) {
         res.redirect(req.session.returnTo || '/user');
-    });
+});
 
-app.get('/*', function(req, res, next) {
+app.get('/*', function(req, res,next) {
+    var err = new Error('Not Found');
+    err.status = 404;
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
     res.render('error', {
         message: "Page Not Found",
-        error: {}
+        error: {err}
     });
 });
 

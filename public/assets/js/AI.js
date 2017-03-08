@@ -24,7 +24,6 @@ const AI = {
         if(jump_moves.length > 0) {
             moves = jump_moves;
         }
-        console.log(moves);
         return moves;
     },
     isMoveLegal: function(cells, pieces, piece, from, to) {
@@ -140,8 +139,6 @@ const AI = {
                     beta = min;
                 }
             }
-        } else {
-            //log("NO MORE MOVES FOR MIN: l=" + limit);
         }
         return min;
     },

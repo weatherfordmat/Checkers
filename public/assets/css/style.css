@@ -17,15 +17,75 @@ input {
 #checkersBoard {
 	width: 650px;
 	height: 650px;
+	display: block;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+.thumbnail{
+	border-radius: 100%;
+	width: 45px;
+	height: 45px;
+	margin: 3px;
+	padding: 0px;
+	position: fixed;
+	border: 0;
+	top: 0;
+	right: 0;
+	margin-right: 15px;
+
+}
+.hello {
+	width: 100%;
+	margin: 0 auto;
+}
+.glyphicon {
+	font-size: 4em;
+	color: black;
+}
+
+.navbar{
+	position: fixed;
+	top:0;
+	right:0;
+	left:0;
+	height: 55px;
+	border-radius: 0;
+	background: #233142;
+	border: 0;
+}
+.navbar-right {
+	margin-right: 20px;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+	background-color: transparent;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover
+.navbar-text{
+	background-color: transparent;
+}
+.navbar-default .navbar-brand {
+    color: #e3e3e3;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	text-align: center;
+}
+.row {
+	display: block;
+	width: 1250px;
+	float: none;
+	clear: both;
 	margin: 0 auto;
 }
 .start, .btnReplay {
-	border: 5px double #004080;
+	float: none;
 	color: #004080;
+	border: 5px solid #004080;
 	background-color: white;
 }
-.start:hover {
+.start:hover, .btnReplay:hover {
+	opacity: 0.9;
 	background-color: white;
-	opacity: 0.8;
-	color:  #004080;
+	color: #004080;
 }
+
+

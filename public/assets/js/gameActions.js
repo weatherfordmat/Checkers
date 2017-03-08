@@ -11,7 +11,7 @@ var action = {
     },
     initBoard: function() {
         //real board
-        let initialBoard = [
+       let initialBoard = [
             
             [empty, red, empty, red, empty, red, empty, red],
             [red, empty, red, empty, red, empty, red, empty],
@@ -41,9 +41,9 @@ var action = {
 
         let cells = new Array();
         let pieces = new Array();
-        for(var i = 0; i < initialBoard.length; i++) {
+        for(var i = 0; i < 8; ++i) {
             var row = initialBoard[i];
-            for(var j = 0; j < row.length; j++) {
+            for(var j = 0; j < 8; ++j) {
                 let colValue = row[j];
                 if(colValue != empty) {
                     let piece = { row: i, col: j, state: colValue };
@@ -53,7 +53,7 @@ var action = {
                 cells.push(cell);
             }
         }
-        return { cells: cells, pieces: pieces, turn: red };
+        return { cells: cells, pieces: pieces, turn: red};
     },
     //check to see if the game is over;
     overYet: function(boardState) {

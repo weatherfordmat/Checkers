@@ -71,7 +71,7 @@ const utils = {
         return index;
     },
     lookForBorder: function(x, y) {
-        if(x == 0 || x == 8 || y == 0 || y == 8) {
+        if(x == 0 || x == 7 || y == 0 || y == 7) {
             return 5;
         } else {
             return 3;
@@ -82,7 +82,6 @@ const utils = {
         // Randomly select move
         var index = Math.floor(Math.random() * (moves.length - 1));
         var selected_move = moves[index];
-
         return selected_move;
     },
     //look if a piece can jump;

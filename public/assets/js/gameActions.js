@@ -53,12 +53,15 @@ var action = {
     //check to see if the game is over;
     overYet: function(boardState) {
         var pieceCount = utils.getPieceCount(boardState);
+        var id = JSON.parse(localStorage.getItem('id'))["id"];
         if(pieceCount.red > 0 && pieceCount.black === 0) {
             console.log("You win!");
+            crud.update(1, 0);
             $('.btnReplay').css('opacity', '1');
             return red;
         } else if(pieceCount.black > 0 && pieceCount.red === 0) {
             console.log("Computer Wins!");
+            crud.update(0, 1);
             $('.btnReplay').css('opacity', '1');
             return black;
         } else return 0; //draw;

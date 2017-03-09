@@ -70,7 +70,7 @@ function post(req) {
         })
         .catch(function(error) {
             console.log(error);
-    });
+        });
 }
 
 app.get('/user', ensureLoggedIn, function(req, res, next) {
@@ -81,7 +81,7 @@ app.get('/user', ensureLoggedIn, function(req, res, next) {
     var url = 'https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/' + id;
     axios.get(url)
         .then(function(response) {
-            if(!response.data) {
+            if (!response.data) {
                 post(req);
             } else {
                 console.log("Data Already In DB");
@@ -101,14 +101,14 @@ app.get('/login', function(req, res, next) {
 
 
 //had to proxy our requests through another route to use them;
-app.get('/db/users/:user?',ensureLoggedIn, function(req, res) {
+app.get('/db/users/:user?', ensureLoggedIn, function(req, res) {
     var id = req.params.user ? req.params.user : '';
-    var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/" +id;
+    var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/" + id;
 
     axios.get(url).then(function(response) {
-          res.json({
-            data: response.data
-          })
+            res.json({
+                data: response.data
+            })
         })
         .catch(function(error) {
             console.log(error);
@@ -123,16 +123,31 @@ app.get('/logout', function(req, res) {
 app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
     function(req, res) {
         res.redirect(req.session.returnTo || '/user');
-});
+    });
 
-app.get('/*', function(req, res,next) {
+app.get('/scores', function(req, res) {
+
+    var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/";
+
+    axios.get(url).then(function(response) {
+            app.set('views', path.join(__dirname, 'public/assets/js/views'));
+            app.set('view engine', 'jade');
+            res.render('scores', { users: response.data });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+})
+
+app.get('/*', function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
     res.render('error', {
         message: "Page Not Found",
-        error: {err}
+        error: { err }
     });
 });
 

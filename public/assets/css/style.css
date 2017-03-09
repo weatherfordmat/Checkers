@@ -87,5 +87,25 @@ input {
 	background-color: white;
 	color: #004080;
 }
+td {
+border: 1px solid black;
+height: 100px;
+width: 100px;
 
+}
 
+#game{
+	margin: 200px 20px 20px 20px;
+	color: #000;
+}
+table#tictactoe {
+      text-align: center;
+    width: 100%;
+    margin-top: 100px;
+}
+table#tictactoe td.btn {
+    background: #ccc;
+    border: 2px solid #fff;
+    width: 150px;
+    height: 150px;
+}

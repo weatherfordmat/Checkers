@@ -24,7 +24,7 @@ var strategy = new Auth0Strategy({
 var env = {
     AUTH0_CLIENT_ID: keys.clientID,
     AUTH0_DOMAIN: keys.domain,
-    AUTH0_CALLBACK_URL: '/user'
+    AUTH0_CALLBACK_URL: 'https://arcademania.herokuapp.com/user'
 };
 
 passport.use(strategy);

@@ -14,12 +14,19 @@ input {
 	margin: 0 auto;
 	margin-top: 5%;
 }
+.content {
+	margin-top: 7%;
+	clear: left;
+}
 #checkersBoard {
 	width: 650px;
 	height: 650px;
 	display: block;
 	margin: 0 auto;
 	margin-top: 50px;
+}
+.btn-container {
+	text-align: center;
 }
 .thumbnail{
 	border-radius: 100%;
@@ -63,8 +70,14 @@ input {
 .navbar-text{
 	background-color: transparent;
 }
-.navbar-default .navbar-brand {
+.navbar-default .navbar-brand, .navbar-default .navbar-text {
     color: #e3e3e3;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #e3e3e3;
+}
+.navbar-default a.navbar-brand:hover, .navbar-default .navbar-nav>li>a:hover {
+    color: #f95959;
 }
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
 	text-align: center;
@@ -76,16 +89,19 @@ input {
 	clear: both;
 	margin: 0 auto;
 }
+.btnReplay {
+	opacity: 0;
+}
 .start, .btnReplay {
 	float: none;
-	color: #004080;
-	border: 5px solid #004080;
-	background-color: white;
+	color: #fff;
+	border-radius: 20px;
+	background-color: #455d7a;
 }
 .start:hover, .btnReplay:hover {
-	opacity: 0.9;
-	background-color: white;
-	color: #004080;
+	background-color: #f95959;
+	color: #fff;
+	border: 1px solid #f95959;
 }
 
 

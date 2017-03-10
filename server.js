@@ -118,7 +118,7 @@ app.get('/logout', function(req, res) {
 
 app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
     function(req, res) {
-        res.redirect(req.session.returnTo || '/user');
+        res.redirect(req.session.returnTo || 'https://arcademania.herokuapp.com/user');
 });
 
 app.get('/*', function(req, res,next) {

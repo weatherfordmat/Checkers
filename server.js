@@ -16,7 +16,7 @@ var strategy = new Auth0Strategy({
     domain: keys.domain,
     clientID: keys.clientID,
     clientSecret: keys.clientSecret,
-    callbackURL: 'http://localhost:8080/user'
+    callbackURL: '/user'
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     return done(null, profile);
 });
@@ -24,7 +24,7 @@ var strategy = new Auth0Strategy({
 var env = {
     AUTH0_CLIENT_ID: keys.clientID,
     AUTH0_DOMAIN: keys.domain,
-    AUTH0_CALLBACK_URL: 'http://localhost:8080/user'
+    AUTH0_CALLBACK_URL: '/user'
 };
 
 passport.use(strategy);

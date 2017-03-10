@@ -13,6 +13,7 @@
     <title>Checkers Project</title>
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Bootstrap Core JavaScript -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="http://a5.mzstatic.com/us/r30/Purple6/v4/e6/60/a7/e660a71a-f4be-7a70-8618-990d54a2d8b0/icon128-2x.png" type="image/x-icon">
     <!-- Custom CSS -->
@@ -98,20 +99,28 @@
     
     <div class="container-fluid content">
         <div class="row">
-                <div class="btn-container">
-                    <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas);">Start New Game</button>
-                    <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas)">View Replay</button>
-                </div>
+        <div class="jumbotron devView">
+        <h2>Dev Console:</h2>
+        <p id="numPoss">Move a Yellow Piece to Begin</p>
+        <ul class="possMoves">
 
+
+        </ul>
+         </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/18, boardCanvas); $('.btnReplay').css('opacity', '0');">Start New Game</button>
+                    <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/18, boardCanvas)">View Replay</button>
+                </div>
                 <svg id="checkersBoard"></svg>
                
+               
         </div>
-    <!--End container-->
 
+    <!--End container-->
+  <script src="assets/js/bootstrap.min.js"></script>
     </div>
     
-    <!-- Bootstrap Core JavaScript -->
-    <script src="assets/js/bootstrap.min.js"></script>
+   
     
     <!-- Custom JavaScript -->
     <script type="text/javascript">

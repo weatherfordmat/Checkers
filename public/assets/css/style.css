@@ -92,6 +92,32 @@ input {
 .btnReplay {
 	opacity: 0;
 }
+.devView {
+	height: 600px;
+	width: 400px;
+	float: left;
+	background-color: #4C4C4C;
+	color: white;
+	overflow: auto;
+	border: 10px double orange;
+}
+.devView ul li {
+	list-style-type: none;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}
+.possMoves {
+	margin: 0;
+	padding: 0;
+}
+#best {
+	color: orange;
+}
+
+.devInfo {
+	width: 375px;
+}
 .start, .btnReplay {
 	float: none;
 	color: #fff;

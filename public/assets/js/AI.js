@@ -24,6 +24,12 @@ const AI = {
         if(jump_moves.length > 0) {
             moves = jump_moves;
         }
+        $('#numPoss').html('There are ' +moves.length +" viable moves.")
+         for(var i = 0; i < moves.length; i++) {
+                myMove = moves[i]
+                myMove.move_type = "slide" ? "No Jump" : "Jump"
+                $('.possMoves').prepend("<li class='devInfo'>From: ("+myMove.from.col+","+myMove.from.row +") &rarr; To (" +myMove.to.col+","+myMove.to.row+")</li><br/>");
+        }
         return moves;
     },
     isMoveLegal: function(cells, pieces, piece, from, to) {
@@ -77,7 +83,6 @@ const AI = {
         if(computer_moves.length > 0) {
             for(var i = 0; i < computer_moves.length; i++) {
                 simulated_board = utils.boardSnapShot(calc_board);
-                console.log(simulated_board);
                 //move computer piece
                 var computer_move = computer_moves[i];
                 var pieceIndex = utils.getPieceIndex(simulated_board.pieces, computer_move.from.row, computer_move.from.col);
@@ -163,7 +168,8 @@ const AI = {
         if(best_moves.length > 1) {
             max_move = utils.randomize(best_moves);
         }
-        console.log(best_moves)
+        var myMove = max_move;
+        $('.possMoves').prepend("<h3 id='best'>Best Move: "+myMove.score +"<br/> From: ("+myMove.from.col+","+myMove.from.row +") &rarr; To (" +myMove.to.col+","+myMove.to.row+")</h3><hr/>")
         return max_move;
     },
     computerMove: function() {
@@ -174,27 +180,26 @@ const AI = {
         // Make computer's move
 
 
-         if (selected_move){       
-        var pieceIndex = utils.getPieceIndex(currentBoard.pieces, selected_move.from.row, selected_move.from.col);
-        var piece = currentBoard.pieces[pieceIndex];
+        if(selected_move) {
+            var pieceIndex = utils.getPieceIndex(currentBoard.pieces, selected_move.from.row, selected_move.from.col);
+            var piece = currentBoard.pieces[pieceIndex];
 
 
-        currentBoard = AI.movePiece(currentBoard, piece, selected_move.from, selected_move.to, 1);
-        UI.moveCircle(selected_move.to, 1);
-        UI.showBoardState();
-        var winner = action.overYet(currentBoard);
-        if(winner != 0) {
-            currentBoard.gameOver = true;
-            // console.log("You win!");
+            currentBoard = AI.movePiece(currentBoard, piece, selected_move.from, selected_move.to, 1);
+            UI.moveCircle(selected_move.to, 1);
+            UI.showBoardState();
+            var winner = action.overYet(currentBoard);
+            if(winner != 0) {
+                currentBoard.gameOver = true;
+                // console.log("You win!");
+            } else {
+                // Set turn back to human
+                currentBoard.turn = player;
+                currentBoard.delay = 0;
+            }
         } else {
-            // Set turn back to human
-            currentBoard.turn = player;
-            currentBoard.delay = 0;
-        }} 
-
-        else {
             //computer has no valid moves
-            currentBoard.gameOver = true; 
+            currentBoard.gameOver = true;
             console.log("You win!");
         }
     },

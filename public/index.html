@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="KoeXlFpq345I7DR1Q6-sQow8Bmw26ECO0R743RAgido" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -82,7 +83,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#">Profile</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="http://localhost:8080/logout" id="logout">Log Out</a></li>
+                                <li><a href="/logout" id="logout">Log Out</a></li>
                             </ul>
                         </a>
                     </li>
@@ -97,12 +98,17 @@
 
     
     <div class="container-fluid content">
+<div class="alert alert-info" role="alert"></div>
+
+
+
         <div class="row">
                 <div class="btn-container">
                     <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas);">Start New Game</button>
                     <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas)">View Replay</button>
                 </div>
-
+        </div>
+        <div class="row">
                 <svg id="checkersBoard"></svg>
                
         </div>

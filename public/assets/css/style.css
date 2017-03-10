@@ -18,16 +18,8 @@ input {
 	margin-top: 7%;
 	clear: left;
 }
-#checkersBoard {
-	width: 650px;
-	height: 650px;
-	display: block;
-	margin: 0 auto;
-	margin-top: 50px;
-}
-.btn-container {
-	text-align: center;
-}
+
+
 .thumbnail{
 	border-radius: 100%;
 	width: 45px;
@@ -84,10 +76,13 @@ input {
 }
 .row {
 	display: block;
-	width: 1250px;
+/*	width: 1250px;*/
 	float: none;
 	clear: both;
 	margin: 0 auto;
+}
+.btnReplay {
+	opacity: 0;
 }
 .start, .btnReplay {
 	float: none;
@@ -101,4 +96,28 @@ input {
 	border: 1px solid #f95959;
 }
 
+
+#checkersBoard {
+	width: 650px;
+	height: 650px;
+	    margin: auto;
+    display: block;
+    float: initial;
+}
+.row .gamerow { 
+	display: block;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.btn-container {
+	text-align: center;
+}
+
+.alert-info{
+	visibility: hidden;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
 

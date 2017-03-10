@@ -16,7 +16,7 @@ var strategy = new Auth0Strategy({
     domain: keys.domain,
     clientID: keys.clientID,
     clientSecret: keys.clientSecret,
-    callbackURL: 'http://localhost:8080/user'
+    callbackURL: 'https://arcademania.herokuapp.com/user'
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     return done(null, profile);
 });
@@ -24,7 +24,7 @@ var strategy = new Auth0Strategy({
 var env = {
     AUTH0_CLIENT_ID: keys.clientID,
     AUTH0_DOMAIN: keys.domain,
-    AUTH0_CALLBACK_URL: 'http://localhost:8080/user'
+    AUTH0_CALLBACK_URL: 'https://arcademania.herokuapp.com/user'
 };
 
 passport.use(strategy);
@@ -38,7 +38,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(session({
-    secret: 'shhhhhhhhh',
+    secret: 'shhhhhhhh',
     resave: true,
     saveUninitialized: true
 }));
@@ -57,13 +57,13 @@ app.all('/', function(req, res) {
     res.redirect('/home');
 });
 
-app.use('/home', ensureLoggedIn, express.static(path.join(__dirname, 'public')));
+app.use('/home', express.static(path.join(__dirname, 'public')));
 
 function post(req) {
     axios.post('https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api', {
             "name": req.user.nickname,
             "picture": req.user.picture_large ? req.user.picture_large : req.user.picture,
-            "auth0Key": req.user.id.replace('auth0|', '').replace('facebook|', '')
+            "auth0Key": req.user.id.replace('auth0|', '').replace('facebook|', '').replace('google-oauth2|', '')
         })
         .then(function(response) {
             console.log(response);
@@ -77,7 +77,7 @@ app.get('/user', ensureLoggedIn, function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
     //insert into database;
-    var id = req.user.id.replace('auth0|', '').replace('facebook|', '') ? req.user.id.replace('auth0|', '').replace('facebook|', '') : '';
+    var id = req.user.id.replace('auth0|', '').replace('facebook|', '').replace('google-oauth2|', '') ? req.user.id.replace('auth0|', '').replace('facebook|', '').replace('google-oauth2|', '') : '';
     var url = 'https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/' + id;
     axios.get(url)
         .then(function(response) {
@@ -100,27 +100,25 @@ app.get('/login', function(req, res, next) {
 });
 
 
-//had to proxy our requests through another route to use them;
-app.get('/db/users/:user?',ensureLoggedIn, function(req, res) {
-    var id = req.params.user ? req.params.user : '';
-    var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/" +id;
+// app.get('/scores', function(req, res) {
+//     var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/";
+//     axios.get(url).then(function(response) {
+//            app.set('views', path.join(__dirname, 'public/assets/js/views'));
+//            app.set('view engine', 'jade');
+//            res.render('scores', { users: response.data });
+//         })
+//         .catch(function(error) {
+//             console.log(error);
+//         });
+// });
 
-    axios.get(url).then(function(response) {
-          res.json({
-            data: response.data
-          })
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-});
 
 app.get('/logout', function(req, res) {
     req.session.destroy();
     res.redirect('/login');
 });
 
-app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
+app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/user' }),
     function(req, res) {
         res.redirect(req.session.returnTo || '/user');
 });

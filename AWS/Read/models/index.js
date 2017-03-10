@@ -9,9 +9,9 @@ var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
 if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable],{ maxConnections: 10, minConnections: 1, maxIdleTime: 650 });
+  var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config, { maxConnections: 10, minConnections: 1, maxIdleTime: 650 });
+  var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 fs

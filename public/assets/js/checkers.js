@@ -17,5 +17,18 @@ or ~ 8 for better results, but takes a while;
 NOTE: Placing the level of difficulty over 10
 may crash your browser.
 */
-var levelOfDifficulty = 9;
+var levelOfDifficulty = 2;
 
+
+//misc. DOM manipulation;
+$(document).ready(function() {
+    $('#logout').click(function() {
+        localStorage.removeItem("id");
+    });
+});
+
+
+/*
+Things To Do Today:
+7. Add Tests;
+*/

@@ -1,17 +1,17 @@
 //read
 exports.handler = (event, context, callback) => {
-    var db = require('./models');
-    db.sequelize.sync();
-    var User = db.User;
     context.callbackWaitsForEmptyEventLoop = false;
+    var db = require('./models');
+    var User = db.User;
     if(!event.params) {
         User.findAll({raw: true})
         .then(function(results) {
             callback(null, results);
-        })
+        });
         .catch(function(err) {
-            db.sequelize.close();
-        })
+            console.log(err);
+            // db.sequelize.close();
+        });
     } else {
         User.findOne({
             where: {
@@ -21,7 +21,8 @@ exports.handler = (event, context, callback) => {
         }).then(function(results) {
             callback(null, results);
         }).catch(function(error) {
-            db.sequelize.close();
+            console.log(error);
+            // db.sequelize.close();
         });
     }
 }

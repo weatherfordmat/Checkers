@@ -192,7 +192,6 @@ let UI = {
             else if(d.state === red) return "2px";
             else return "2px";
         });
-
     }
 }
 

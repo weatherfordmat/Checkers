@@ -98,12 +98,17 @@
 
     
     <div class="container-fluid content">
+<div class="alert alert-info" role="alert"></div>
+
+
+
         <div class="row">
                 <div class="btn-container">
                     <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas);">Start New Game</button>
                     <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas)">View Replay</button>
                 </div>
-
+        </div>
+        <div class="row">
                 <svg id="checkersBoard"></svg>
                
         </div>

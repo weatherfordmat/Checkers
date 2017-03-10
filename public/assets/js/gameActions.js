@@ -3,6 +3,7 @@
 var action = {
     //start game;
     startGame: function(origin, cellWidth, boardCanvas) {
+        $('.alert-info').empty().css('visibility','hidden');
         AI.movePiece.moves = [];
         cell_width = cellWidth;
         board_origin = origin;
@@ -53,13 +54,16 @@ var action = {
     //check to see if the game is over;
     overYet: function(boardState) {
         var pieceCount = utils.getPieceCount(boardState);
+
         var id = JSON.parse(localStorage.getItem('id'))["id"];
         if(pieceCount.red > 0 && pieceCount.black === 0) {
+            $('.alert-info').text("You win!").css('visibility','visible');
             console.log("You win!");
             crud.update(1, 0);
             $('.btnReplay').css('opacity', '1');
             return red;
         } else if(pieceCount.black > 0 && pieceCount.red === 0) {
+            $('.alert-info').text("Computer wins!").css('visibility','visible');
             console.log("Computer Wins!");
             crud.update(0, 1);
             $('.btnReplay').css('opacity', '1');
@@ -67,6 +71,7 @@ var action = {
         } else return 0; //draw;
     },
     quit: function(boardState) {
+            $('.alert-info').text("Computer wins!").css('visibility','visible');
             console.log("Computer Wins!");
             action.startGame({x: 0, y: 0}, 70, boardCanvas);
     },
@@ -105,4 +110,3 @@ var action = {
         }
     },
 }
-

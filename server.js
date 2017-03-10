@@ -57,7 +57,7 @@ app.all('/', function(req, res) {
     res.redirect('/home');
 });
 
-app.use('/home', ensureLoggedIn, express.static(path.join(__dirname, 'public')));
+app.use('/home', express.static(path.join(__dirname, 'public')));
 
 function post(req) {
     axios.post('https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api', {

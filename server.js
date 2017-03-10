@@ -16,7 +16,7 @@ var strategy = new Auth0Strategy({
     domain: keys.domain,
     clientID: keys.clientID,
     clientSecret: keys.clientSecret,
-    callbackURL: '/user'
+    callbackURL: 'https://arcademania.herokuapp.com/user'
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     return done(null, profile);
 });

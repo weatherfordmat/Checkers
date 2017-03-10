@@ -38,7 +38,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(session({
-    secret: 'shhhhhhhhh',
+    secret: 'shhhhhhhh',
     resave: true,
     saveUninitialized: true
 }));
@@ -99,17 +99,19 @@ app.get('/login', function(req, res, next) {
     res.render('login', { env: env });
 });
 
-app.get('/scores', function(req, res) {
-    var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/";
-    axios.get(url).then(function(response) {
-           app.set('views', path.join(__dirname, 'public/assets/js/views'));
-           app.set('view engine', 'jade');
-           res.render('scores', { users: response.data });
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-});
+
+// app.get('/scores', function(req, res) {
+//     var url = "https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api/";
+//     axios.get(url).then(function(response) {
+//            app.set('views', path.join(__dirname, 'public/assets/js/views'));
+//            app.set('view engine', 'jade');
+//            res.render('scores', { users: response.data });
+//         })
+//         .catch(function(error) {
+//             console.log(error);
+//         });
+// });
+
 
 app.get('/logout', function(req, res) {
     req.session.destroy();

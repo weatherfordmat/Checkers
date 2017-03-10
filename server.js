@@ -38,7 +38,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(session({
-    secret: 'shhhhhhhhh',
+    secret: 'shhhhhhhhhh',
     resave: true,
     saveUninitialized: true
 }));

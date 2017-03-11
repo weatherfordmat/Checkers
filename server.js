@@ -16,7 +16,7 @@ var strategy = new Auth0Strategy({
     domain: keys.domain,
     clientID: keys.clientID,
     clientSecret: keys.clientSecret,
-    callbackURL: 'https://arcademania.herokuapp.com/user'
+    callbackURL: '/user'
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     return done(null, profile);
 });
@@ -24,7 +24,7 @@ var strategy = new Auth0Strategy({
 var env = {
     AUTH0_CLIENT_ID: keys.clientID,
     AUTH0_DOMAIN: keys.domain,
-    AUTH0_CALLBACK_URL: 'https://arcademania.herokuapp.com/user'
+    AUTH0_CALLBACK_URL: '/user'
 };
 
 passport.use(strategy);
@@ -57,7 +57,7 @@ app.all('/', function(req, res) {
     res.redirect('/home');
 });
 
-app.use('/home', express.static(path.join(__dirname, 'public')));
+app.use('/home', ensureLoggedIn, express.static(path.join(__dirname, 'public')));
 
 function post(req) {
     axios.post('https://4qcth52o74.execute-api.us-east-1.amazonaws.com/Test1/api', {
@@ -96,6 +96,7 @@ app.get('/user', ensureLoggedIn, function(req, res, next) {
 app.get('/login', function(req, res, next) {
     app.set('views', path.join(__dirname, 'public/assets/js/views'));
     app.set('view engine', 'jade');
+
     res.render('login', { env: env });
 });
 
@@ -120,6 +121,7 @@ app.get('/logout', function(req, res) {
 
 app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/user' }),
     function(req, res) {
+        console.log(res);
         res.redirect(req.session.returnTo || '/user');
 });
 

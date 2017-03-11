@@ -3,10 +3,15 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Tic Tac Toeheckers Project</title>
+    <title>Tic Tac Toe</title>
     <!-- Bootstrap -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.js"></script>
+    <script src="tictac.js"></script>
 </head>
 
 <body>
@@ -61,19 +66,19 @@
     <div class="container-fluid">
         <table id="tictactoe">
             <tr>
-                <td id="one" class="btn span1"></td>
-                <td id="two" class="btn span1"></td>
-                <td id="three" class="btn span1"></td>
+                <td data-box="1" class="btn span1"></td>
+                <td data-box="2" class="btn span1"></td>
+                <td data-box="3" class="btn span1"></td>
             </tr>
             <tr>
-                <td id="four" class="btn span1"> </td>
-                <td id="five" class="btn span1"></td>
-                <td id="six" class="btn span1"></td>
+                <td data-box="4" class="btn span1"> </td>
+                <td data-box="5" class="btn span1"></td>
+                <td data-box="6" class="btn span1"></td>
             </tr>
             <tr>
-                <td id="seven" class="btn span1"></td>
-                <td id="eight" class="btn span1"></td>
-                <td id="nine" class="btn span1"></td>
+                <td data-box="7" class="btn span1"></td>
+                <td data-box="8" class="btn span1"></td>
+                <td data-box="9" class="btn span1"></td>
             </tr>
         </table>
     </div>

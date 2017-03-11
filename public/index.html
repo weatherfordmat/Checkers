@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="KoeXlFpq345I7DR1Q6-sQow8Bmw26ECO0R743RAgido" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -46,7 +47,8 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div class="navbar-header">                
+            <a class="navbar-brand" href="#">Arcadia Mania</a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                
                     <span class="sr-only">Toggle navigation</span>
@@ -54,8 +56,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Arcadia Mania</a>
+                <!-- <div class="nav navbar-nav navbar-right"> -->
+                       <p class="navbar-text navbar-right losses">Loading. . .</p>
+                    <p class="navbar-text navbar-right wins">Loading. . .</p>
+             
+                   
+             <!--    </div> -->
             </div>
+
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -73,6 +82,7 @@
                         </ul>
                     </li>
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <p class="navbar-text navbar-left wins">Loading. . .</p>
                     <p class="navbar-text navbar-left losses">Loading. . .</p>
@@ -82,30 +92,54 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#">Profile</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="http://localhost:8080/logout" id="logout">Log Out</a></li>
+                                <li><a href="/logout" id="logout">Log Out</a></li>
                             </ul>
                         </a>
                     </li>
                 </ul>
+
             </div>
             <!-- /.navbar-collapse -->
-        </div
-        
+                <div>
+
+
+
+                <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="http://placehold.it/140x100" alt="pic" class="thumbnail dropdown-toggle">
+                    <ul class="dropdown-menu logoutmenu">
+                        <li><a href="#">Profile</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="http://localhost:8080/logout" id="logout">Log Out</a></li>
+                    </ul>
+                </a>
+                </div>
+        </div>
     </nav>
     
     </div>
 
     
     <div class="container-fluid content">
+<div class="alert alert-info" role="alert"></div>
+
+
+
         <div class="row">
                 <div class="btn-container">
                     <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas);">Start New Game</button>
                     <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas)">View Replay</button>
                 </div>
-
+        </div>
+        <div class="row">
                 <svg id="checkersBoard"></svg>
                
         </div>
+
+            <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas);">Start New Game</button>
+            <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas)">View Replay</button>
+
+        <!--End container-->
+
     <!--End container-->
 
     </div>

@@ -17,6 +17,7 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="http://a5.mzstatic.com/us/r30/Purple6/v4/e6/60/a7/e660a71a-f4be-7a70-8618-990d54a2d8b0/icon128-2x.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
     <!-- Custom CSS -->
     <!--font embed -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -58,14 +59,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- <div class="nav navbar-nav navbar-right"> -->
-                    <p class="navbar-text navbar-right losses">Loading. . .</p>
-                    <p class="navbar-text navbar-right wins">Loading. . .</p>
-             
-                   
+                    <p class="navbar-text navbar-right losses"></p>
+                    <p class="navbar-text navbar-right wins"></p>              
              <!--    </div> -->
             </div>
-
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -75,11 +72,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GAMES <span class="caret"></span></a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#">Checkers</a></li>
-                            <li><a href="#">Tic Tac Toe</a></li>
-                            <li><a href="#">Minesweeper</a></li>
+                            <li><a href="/home">Checkers</a></li>
+                            <li><a href="/home/tictactoe.html">Tic Tac Toe</a></li>
+                            <li><a href="/home/minesweeper.html">Minesweeper</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">High Scores</a></li>
+                            <li><a href="/scores">High Scores</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -94,7 +91,7 @@
                 <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="http://placehold.it/140x100" alt="profile photo" class="thumbnail dropdown-toggle">
                     <ul class="dropdown-menu logoutmenu">
-                        <li><a href="#">Profile</a></li>
+                        <li><a href="/user">Profile</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="http://localhost:8080/logout" id="logout">Log Out</a></li>
                     </ul>
@@ -121,10 +118,6 @@
                 <svg id="checkersBoard"></svg>
                
         </div>
-
-            <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas);">Start New Game</button>
-            <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, (($(window).height() + $(window).width())/2)/17, boardCanvas)">View Replay</button>
-
         <!--End container-->
 
     <!--End container-->

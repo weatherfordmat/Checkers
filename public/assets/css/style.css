@@ -18,12 +18,10 @@ input {
 	margin-top: 7%;
 	clear: left;
 }
-
-
 .thumbnail{
 	border-radius: 100%;
-	width: 45px;
-	height: 45px;
+	width: 57px;
+	height: 57px;
 	margin: 3px;
 	padding: 0px;
 	position: fixed;
@@ -37,6 +35,12 @@ input {
 .logoutmenu{
 	position: relative;
 	float: right;
+}
+.dropdown {
+	margin-left: 75px;
+}
+.wins, .losses {
+	font-size: 1.2em;
 }
 .hello {
 	width: 100%;
@@ -57,8 +61,8 @@ div.navbar-header{
 	top:0;
 	right:0;
 	left:0;
-	height: 55px;
-	border-radius: 0;
+	height: 60px;
+	border-radius: 0px;
 	background: #233142;
 	border: 0;
 }
@@ -72,6 +76,12 @@ div.navbar-header{
 .navbar-text{
 	background-color: transparent;
 
+}
+.navbar-brand {
+	font-family: 'Baloo Bhaina', cursive;
+	color: #ffd700 !important;
+	font-size: 2em;
+	margin-top: 10px;
 }
 .navbar-default .navbar-brand, .navbar-default .navbar-text {
     color: #e3e3e3;
@@ -93,12 +103,14 @@ div.navbar-header{
     position: fixed;
 }
 
-
-
 .navbar-toggle {
     position: relative;
 	float: left;
-    }
+	background-color: white;
+	font-size: 0.8em;
+	border: 0px;
+	border-radius: 0px;
+}
 
 ul.nav.navbar-nav{
 	position: fixed;
@@ -125,6 +137,7 @@ p.navbar-text.navbar-right.losses {
 }
 .btnReplay {
 	opacity: 0;
+	margin-bottom: 2%;
 }
 .start, .btnReplay {
 	float: none;

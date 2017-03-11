@@ -9,9 +9,10 @@ html( lang="en" )
         //- Bootswatch Theme
         script(src="https://cdn.auth0.com/js/lock/10.3/lock.min.js")
         link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+        link(href="http://localhost:8080/assets/css/style.css", rel="stylesheet")
  
     body(style="padding-bottom:10rem;")
-    nav.navbar.navbar-default( role="navigation" )
+    nav.navbar.navbar-default( role="navigation", style="border-radius: 0" )
       .navbar-header
           button.navbar-toggle.collapsed( type="button", data-toggle="collapse", data-target="#navbar-inverse", aria-expanded="false", aria-controls="navbar")
               span.sr-only Toggle navigation
@@ -26,11 +27,11 @@ html( lang="en" )
                   a.dropdown-toggle( href="#", data-toggle="dropdown", role="button", aria-expanded="false" ) Games
                     span.caret
                   ul.dropdown-menu( role="menu" )
-                      li: a( href="" ) Checkers
-                      li: a( href="#" ) Tic Tac Toe
-                      li: a( href="#" ) Minesweeper
+                      li: a( href="/home" ) Checkers
+                      li: a( href="/home/tictactoe.html" ) Tic Tac Toe
+                      li: a( href="/home/minesweeper.html" ) Minesweeper
                       li.divider
-                      li: a( href="#" ) High Scores
+                      li: a( href="/scores" ) High Scores
     .container
  
         script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )

@@ -15,8 +15,11 @@
     <title>Arcadia Mania - MineSweeper - an Online Arcade Portal for Classic Games </title>
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    
     <link rel="shortcut icon" href="http://a5.mzstatic.com/us/r30/Purple6/v4/e6/60/a7/e660a71a-f4be-7a70-8618-990d54a2d8b0/icon128-2x.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/minesweeper.css">
+        <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css">
     <!-- Custom CSS -->
     <!--font embed -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -31,7 +34,8 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.js"></script>
-    <script src="assets/js/utils.js">
+    <script src="assets/js/checkers.js"></script>
+        <script src="assets/js/utils.js">
     </script>
     <script src="assets/js/sideEffects.js">
     </script>
@@ -41,7 +45,7 @@
     </script>
     <script src="assets/js/api.js">
     </script>
-    <script src="assets/js/checkers.js"></script>
+    <script src="assets/js/vue.js"> </script>
 </head>
 
 <body>
@@ -49,7 +53,7 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">                
-            <a class="navbar-brand" href="#">Arcadia Mania</a>
+            <a class="navbar-brand" href="/home">Arcadia Mania</a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                
                     <span class="sr-only">Toggle navigation</span>
@@ -65,7 +69,7 @@
              <!--    </div> -->
             </div>
 
-
+         
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -75,9 +79,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GAMES <span class="caret"></span></a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#">Checkers</a></li>
-                            <li><a href="#">Tic Tac Toe</a></li>
-                            <li><a href="#">Minesweeper</a></li>
+                            <li><a href="/home">Checkers</a></li>
+                            <li><a href="/home/tictactoe.html">Tic Tac Toe</a></li>
+                            <li><a href="/home/minesweeper.html#">Minesweeper</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">High Scores</a></li>
                         </ul>
@@ -94,7 +98,7 @@
                 <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="http://placehold.it/140x100" alt="profile photo" class="thumbnail dropdown-toggle">
                     <ul class="dropdown-menu logoutmenu">
-                        <li><a href="#">Profile</a></li>
+                        <li><a href="/user">Profile</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="http://localhost:8080/logout" id="logout">Log Out</a></li>
                     </ul>
@@ -102,13 +106,12 @@
                 </div>
         </div>
     </nav>
+       <div style="margin-top: 5%"> </div>
         <div id="app">
         
             <h1>
                 {{ message }}
                 </br>
-
-               <small>{{sub}} </small>
                   <hr>
             </h1>
             <span class="level"> Level: {{level}} </span>
@@ -135,7 +138,6 @@
 			el: '#app',
 			data: {
 			message: 'Minesweeper',
-			sub: 'Guess which squares are mines and which are safe!',
 			level: difficulty-9,
 			squares: 400,
 			points: 0,

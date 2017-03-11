@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	h2(style="text-align: center") High Scores!
+	for result in users
+		.image-block
+			img.className#IdName(src="#{result.picture}", style="width: 75px; height: auto", alt="Image Title")
+			li(style="font-size: 2em; color: #999999;list-style-type: none") @#{result.name}
+				if result.losses !== 0
+					p(style="color: #008000") #{parseFloat(result.wins/(result.wins+result.losses)).toFixed(2)*100}%
+				else
+					p(style="color: #008000") 0% 
+
+				p(style="font-size: 0.7em;") #{result.name} has played #{result.wins+result.losses} games.
+				hr

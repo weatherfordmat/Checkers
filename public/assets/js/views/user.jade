@@ -1,16 +1,15 @@
 extends layout
 
 block content
-	img(src="#{user.picture}" style="width: 75px; border-radius: 100%")
-	h2 Welcome #{user.nickname}!
-	p Login Provider: #{user.provider}
-	br
-	a(href='/logout' style="color: red; font-size: 2em") Logout
-
-	script.
-		var profile = {
-			"id": "#{user.id}".replace("auth0|", '').replace("facebook|",''),
-			"picture": "#{user.picture}",
-			"nickname":"#{user.nickname}"
-		}
-		localStorage.setItem('id', JSON.stringify(profile));
+	div(style="border: 2px solid #B3B3B3; padding: 20px; width: 30%; margin: 0 auto; text-align: center")
+		img(src="#{user.picture}" style="width: 75px; border-radius: 100%")
+		h2 Welcome #{user.nickname}!
+		br
+		a(href='/logout' style="color: red; font-size: 2em") Logout
+		script.
+			var profile = {
+				"id": "#{user.id}".replace("auth0|", '').replace("facebook|",''),
+				"picture": "#{user.picture}",
+				"nickname":"#{user.nickname}"
+			}
+			localStorage.setItem('id', JSON.stringify(profile));

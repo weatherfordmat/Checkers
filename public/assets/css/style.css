@@ -139,19 +139,30 @@ p.navbar-text.navbar-right.losses {
 	opacity: 0;
 	margin-bottom: 2%;
 }
-.start, .btnReplay {
+.start, .btnReplay, .devView {
 	float: none;
 	color: #fff;
 	border-radius: 20px;
 	background-color: #455d7a;
 }
-.start:hover, .btnReplay:hover {
+.start:hover, .btnReplay:hover, .devView:hover {
 	background-color: #f95959;
 	color: #fff;
 	border: 1px solid #f95959;
 }
-
-
+.panel {
+	overflow: auto;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 300px;
+	margin-top: 200px;
+	z-index: -10;
+	opacity: 0;
+}
+#closeDev {
+	z-index: 100;
+}
 #checkersBoard {
 	width: 650px;
 	height: 650px;

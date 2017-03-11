@@ -17,7 +17,7 @@ or ~ 8 for better results, but takes a while;
 NOTE: Placing the level of difficulty over 10
 may crash your browser.
 */
-var levelOfDifficulty = 2;
+var levelOfDifficulty = 4;
 
 
 //misc. DOM manipulation;
@@ -25,10 +25,17 @@ $(document).ready(function() {
     $('#logout').click(function() {
         localStorage.removeItem("id");
     });
+    var clicks = 0;
+    $('.devView').click(function() {
+    	
+    	clicks++;
+    	if (clicks % 2 === 0) {
+    		$('.panel').css('opacity', '0');
+    		$(this).text('Dev View');
+    	}
+    	else {
+    		$('.panel').css('opacity', '1');
+    		$(this).text('Close Dev View');
+    	}
+    });
 });
-
-
-/*
-Things To Do Today:
-7. Add Tests;
-*/

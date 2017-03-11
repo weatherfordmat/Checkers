@@ -121,7 +121,7 @@ app.get('/logout', function(req, res) {
 
 app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/user' }),
     function(req, res) {
-        console.log(res);
+        //console.log(res);
         res.redirect(req.session.returnTo || '/user');
 });
 

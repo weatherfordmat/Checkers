@@ -10,13 +10,13 @@
     <meta name="description" content="Arcadia Mania is an online gaming portal that allows you to play classic games such as Checkers, Minesweeper, and Tic-Tac-Toe. Checkers is a game where you are attempting to eliminate your opponent's pieces by jumping over them.">
     <meta name="author" content="Matt Weatherford, Veronica Diaz, Joshua Diebel, & D’Ann Hart
 ">
-    <!--favicon code -->
-    <!-- end favicon code -->
+
     <title>Arcadia Mania - Checkers - an Online Arcade Portal for Classic Games </title>
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="http://a5.mzstatic.com/us/r30/Purple6/v4/e6/60/a7/e660a71a-f4be-7a70-8618-990d54a2d8b0/icon128-2x.png" type="image/x-icon">
+    <!--favicon code -->
+    <link rel="icon" href="assets/img/icon128-2x.png">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
     <!-- Custom CSS -->
     <!--font embed -->
@@ -111,12 +111,21 @@
         <div class="row">
                 <div class="btn-container">
                     <button class="btn btn-primary start" onclick="action.startGame({x: 0, y: 0}, 70, boardCanvas);">Start New Game</button>
+                    <button class="btn btn-primary devView">DevView</button> 
                     <button class="btn btn-primary btnReplay" onclick="action.replay({x: 0, y: 0}, 70, boardCanvas)">View Replay</button>
+
                 </div>
         </div>
         <div class="row">
                 <svg id="checkersBoard"></svg>
-               
+               <div class="panel panel-default">
+
+<h1 style="text-align: center"> Best Moves </br></h1>
+  <div class="panel-body">
+    
+  </div>
+
+</div>
         </div>
         <!--End container-->
 

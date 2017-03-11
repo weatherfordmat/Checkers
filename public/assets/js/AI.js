@@ -9,6 +9,7 @@ const AI = {
         var move = null;
         var player_pieces = utils.get_player_pieces(player, target_board);
         for(var i = 0; i < player_pieces.length; i++) {
+
             var from = player_pieces[i];
             var piece_moves = AI.getPieceMoves(target_board, from, player);
             moves.push.apply(moves, piece_moves);
@@ -77,7 +78,6 @@ const AI = {
         if(computer_moves.length > 0) {
             for(var i = 0; i < computer_moves.length; i++) {
                 simulated_board = utils.boardSnapShot(calc_board);
-                console.log(simulated_board);
                 //move computer piece
                 var computer_move = computer_moves[i];
                 var pieceIndex = utils.getPieceIndex(simulated_board.pieces, computer_move.from.row, computer_move.from.col);
@@ -163,7 +163,12 @@ const AI = {
         if(best_moves.length > 1) {
             max_move = utils.randomize(best_moves);
         }
-        console.log(best_moves)
+        $('.panel-body').empty();
+       $.each(best_moves,function(a) {
+            $('.panel-body').prepend("<li style='list-style-type: none; font-size: 2em; text-align: center; margin: 20px;'><span style='border: 1px solid white; width: 35px; background-color:#0080FF;color: white;  padding: 10px; border-radius: 35px;'>" +best_moves[a].from.row +"," +best_moves[a].from.row +"</span> &rarr; <span style='border: 1px solid white; width: 25px; background-color:#000000;color: white;  padding: 10px; border-radius: 35px;'>" +best_moves[a].to.col +"," +best_moves[a].to.row +"</span></li>");
+        
+        });
+
         return max_move;
     },
     computerMove: function() {

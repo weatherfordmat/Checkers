@@ -57,7 +57,7 @@ var action = {
             // $('.alert-info').text("You win!").css('visibility','visible');
         var id = JSON.parse(localStorage.getItem('id'))["id"];
         if(pieceCount.red > 0 && pieceCount.black === 0) {
-            // $('.alert-info').text("You win!").css('visibility','visible');
+            $('.alert-info').text("You win!").css('visibility','visible');
             console.log("You win!");
             crud.update(1, 0);
             $('.btnReplay').css('opacity', '1');

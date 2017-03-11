@@ -4,7 +4,7 @@
 
 This was a project that was completed as Part of The University of Texas at Austin Coding Bootcamp. During the course, we split up into groups and are given a couple of weeks to build something with a set of given technologies. 
 
-We decided to build an online arcade. Our primary game is checkers in which you can play against the computer.
+We decided to build an online arcade. Our primary game is checkers in which you can play against the computer. We have also developed minesweeper and tic-tac-toe.
 
 ## What Technologies We Used
 
@@ -26,7 +26,7 @@ Front End:
 
 3. Auth0: A simple authentication service to allow for user registration, logging in, logging out, etc;
 
-4. Bootstrap: General Stylign and the Grid System;
+4. Bootstrap: General Styling and the Grid System;
 
 ## Motivation
 
@@ -62,6 +62,11 @@ JLDiebel
 v8tx
 weatherfordmat
 
+## Future
+
+Hash tables are notoriously fast, far faster than the browser computing the same moves over and over again. In a future edition of the game, for each move, we want to save teh board relative to the game difficulty and the corresponding move which was chosen (or even better the two or three best moves).
+
+Also, the computer chooses the first available double jump and not necessarily the best. It also forces the player to do the same. We can add a `feedback loop` here to have the computer statistically delineate the unwritten rules of chosing the better jump without looking more moves ahead. This is more the essence of machine learning.
 
 ## License
 

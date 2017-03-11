@@ -33,6 +33,11 @@ input {
 	margin-right: 15px;
 
 }
+
+.logoutmenu{
+	position: relative;
+	float: right;
+}
 .hello {
 	width: 100%;
 	margin: 0 auto;
@@ -40,6 +45,11 @@ input {
 .glyphicon {
 	font-size: 4em;
 	color: black;
+}
+
+div.navbar-header{
+		background: #233142;
+		    width: 100%;
 }
 
 .navbar{
@@ -61,9 +71,11 @@ input {
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover
 .navbar-text{
 	background-color: transparent;
+
 }
 .navbar-default .navbar-brand, .navbar-default .navbar-text {
     color: #e3e3e3;
+    display: inline;
 }
 .navbar-default .navbar-nav>li>a {
     color: #e3e3e3;
@@ -74,6 +86,36 @@ input {
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
 	text-align: center;
 }
+
+.navbar-collapse.in {
+    overflow-y: auto;
+    background-color: #233142;
+    position: fixed;
+}
+
+
+
+.navbar-toggle {
+    position: relative;
+	float: left;
+    }
+
+ul.nav.navbar-nav{
+	position: fixed;
+    top: 0px;
+    left: 150px;
+
+}
+
+p.navbar-text.navbar-right{
+	float: right;
+	background: #233142;
+}
+
+p.navbar-text.navbar-right.losses {
+    margin-right: 80px;
+}
+
 .row {
 	display: block;
 /*	width: 1250px;*/
@@ -120,5 +162,33 @@ input {
 	font-weight: bold;
 	font-size: 20px;
 	height: 50px;
+
 }
 
+@media (max-width: 767px)
+{
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #e3e3e3;
+}
+div.btn-container {
+    margin-top: 15px;
+}
+ul.nav.navbar-nav{
+	position: static;
+
+}
+
+}
+
+
+@media (max-width: 480px)
+{
+div.container-fluid {
+    padding: 0px;
+}
+.container-fluid>.navbar-header{
+	margin: 0;
+}
+p.navbar-text.navbar-right {
+	clear: left;
+}
